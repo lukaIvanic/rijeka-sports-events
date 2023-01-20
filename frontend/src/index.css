@@ -1,6 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -8,9 +5,39 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  height: 100%;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.dropdown{
+  margin-right: 20px;
+}
+
+/*change colour of dropdown menu button to D9FFD8*/
+.btn  {
+  background-color: #D9FFD8;
+  /*remove border and make text black*/
+  border: none;
+  color: black;
+}
+
+/*on hover make it to darker tone of D9FFD8*/
+.btn:hover {
+  background-color: #C8EBC7;
+  border: none;
+  color: black;
+}
+
+/*on clicked make it D9FFD8*/
+.btn:active {
+  background-color: #D9FFD8;
+  border: none;
+  color: black;
+}
+
+

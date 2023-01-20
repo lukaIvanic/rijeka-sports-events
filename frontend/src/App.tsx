@@ -1,14 +1,22 @@
-import React from 'react';
 import './App.css';
+import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
+import HomePage from './pages/HomePage';
+import ChangeAccountSettingPage from './pages/ChangeAccountSettingPage';
+import LogInPage from './pages/LogInPage';
+import { AccountInfoPage } from './pages/AccountInfoPage';
 
-const App: React.FC = () => {
-  const imeBoga: string = "Jakov Cvetko"
+function App() {
   return (
-    <div className="App">
-      <h1 className="text-3xl font-bold">
-        {imeBoga}
-      </h1>
-    </div>
+    <Router>
+      <div className="App">
+      </div>
+      <Routes>
+        <Route path="/formular" element={<ChangeAccountSettingPage />} />
+        <Route path="/login" element={<LogInPage />} />
+        <Route path="/info" element={<AccountInfoPage />} />
+        <Route path="/" element={<HomePage />} />
+      </Routes>
+    </Router>
   );
 }
 
