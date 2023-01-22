@@ -15,7 +15,7 @@ code {
 }
 
 .dropdown{
-  margin-right: 20px;
+  margin-right: 5px;
 }
 
 /*change colour of dropdown menu button to D9FFD8*/
@@ -40,4 +40,30 @@ code {
   color: black;
 }
 
+/*change colour of class changeBackground to darker variant D9FFD8 on hover and make it rounder*/
+.changeBackground:hover {
+  background-color: #C8EBC7;
+  border-radius: 5px;
+}
 
+
+/*change colour of class changeBackground to darker variant D9FFD8 on clicked and make it rounder*/
+.changeBackground:active {
+  background-color: #99b998;
+  border-radius: 10px;
+}
+
+
+.fixed-height-card-header {
+  height: 58px;
+}
+
+.gray-bg {
+  background-color: rgb(172, 172, 172);
+}
+
+.game-form {
+  width: 70%;
+  max-width: 100%;
+  margin: 0 auto;
+}

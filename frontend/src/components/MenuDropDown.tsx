@@ -8,12 +8,12 @@ function MenuDropDown() {
 
 
   return (
-    <Nav className="mr-auto" navbar>
+    <Nav className="changeBackground ml-auto" navbar>
       <Dropdown isOpen={dropdownOpen} toggle={()=>setDropdownOpen((p) => !p)}>
-        <DropdownToggle caret>Menu</DropdownToggle>
+        <DropdownToggle nav>Menu</DropdownToggle>
         <DropdownMenu right>
             <DropdownItem href="/info">Account settings</DropdownItem>
-            <DropdownItem href="#">Add event</DropdownItem>
+            <DropdownItem href="/addEvent">Add event</DropdownItem>
             <DropdownItem divider />
             <DropdownItem href="/login">Log out</DropdownItem>
           </DropdownMenu>
