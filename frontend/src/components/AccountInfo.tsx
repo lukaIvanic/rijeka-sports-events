@@ -1,12 +1,15 @@
 import React from 'react';
 import { Container, Col, Image, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+const logoUrl = "./logo.jpg"
 
 const AccountInfo = () => {
   return (
-    <Container className="d-flex align-items-center justify-content-center" style={{ height: '75vh' }}>
+<div className="d-flex justify-content-center align-items-center" style={{ height: '75vh' }}>
+  <div className="game-form w-70 mx-auto">
+    <Container>
       <Col xs={12} md={4}>
-        <Image fluid className="mb-5" />
+        <img src={logoUrl} alt="logo" className="img-fluid mb-5" />
         <h5 className="text-muted">User name:</h5>
         <p className="mb-5">John Doe</p>
         <h5 className="text-muted">Profile sport:</h5>
@@ -18,6 +21,9 @@ const AccountInfo = () => {
         </Link>
       </Col>
     </Container>
+  </div>
+</div>
+
   );
 }
 

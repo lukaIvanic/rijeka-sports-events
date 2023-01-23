@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage';
 import ChangeAccountSettingPage from './pages/ChangeAccountSettingPage';
 import LogInPage from './pages/LogInPage';
 import { AccountInfoPage } from './pages/AccountInfoPage';
+import AddEventPage from './pages/AddEventPage';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/formular" element={<ChangeAccountSettingPage />} />
         <Route path="/login" element={<LogInPage />} />
         <Route path="/info" element={<AccountInfoPage />} />
+        <Route path="/addEvent" element={<AddEventPage />} />
         <Route path="/" element={<HomePage />} />
       </Routes>
     </Router>

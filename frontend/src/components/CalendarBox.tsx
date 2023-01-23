@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import React from 'react';
 import { Card, CardHeader, CardBody } from 'reactstrap';
 
 const CalendarBox = () => {
@@ -17,10 +16,28 @@ const CalendarBox = () => {
 
   return (
     <Card>
-      <CardHeader style={{ textAlign: 'center' }}>
-        <button onClick={previousDay} style={{ marginRight: '100px' }}>{'<'}</button>
-        {date.toDateString()}
-        <button onClick={nextDay} style={{ marginLeft: '100px' }}>{'>'}</button>
+      <CardHeader className="fixed-height-card-header" style={{ textAlign: 'center' }}>
+        <div className="row">
+          <div className="col-2">
+            <button className=" btn btn-secondary fixed-width-btn gray-bg" onClick={previousDay}>
+            {'<'}
+            </button>
+          </div>
+          <div className="col-8">
+            <h4>{date.toLocaleDateString(undefined, {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+            
+          })}</h4>
+          </div>
+          <div className="col-2">
+            <button className="btn btn-secondary fixed-width-btn gray-bg" onClick={nextDay}>
+            {'>'}
+            </button>
+          </div>
+        </div>
+
       </CardHeader>
       <CardBody>
         {/* Calendar content goes here */}
