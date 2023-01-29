@@ -5,6 +5,8 @@ import ChangeAccountSettingPage from './pages/ChangeAccountSettingPage';
 import LogInPage from './pages/LogInPage';
 import { AccountInfoPage } from './pages/AccountInfoPage';
 import AddEventPage from './pages/AddEventPage';
+import RegisterUserPage from './pages/RegisterUserPage';
+import AddLeaguePage from './pages/AddLeaguePage';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
         <Route path="/login" element={<LogInPage />} />
         <Route path="/info" element={<AccountInfoPage />} />
         <Route path="/addEvent" element={<AddEventPage />} />
+        <Route path="/register" element={<RegisterUserPage />} />
+        <Route path="/addLeague" element={<AddLeaguePage />} />
         <Route path="/" element={<HomePage />} />
       </Routes>
     </Router>

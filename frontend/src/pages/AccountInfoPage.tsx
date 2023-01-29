@@ -5,10 +5,12 @@ import AccountInfo from '../components/AccountInfo'
 
 export const AccountInfoPage = () => {
   return (
-    <div>
-        <NavBar/>
-        <AccountInfo/>
-        <BottomOfThePage/>
-    </div>
+<div>
+  <NavBar/>
+  <div style={{display: 'flex', height: '75vh', alignItems: 'center', justifyContent: 'center'}}>
+    <AccountInfo/>
+  </div>
+  <BottomOfThePage/>
+</div>
   )
 }

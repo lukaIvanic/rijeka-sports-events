@@ -7,7 +7,9 @@ const ChangeAccountSettingPage = () => {
   return (
     <div>
         <NavBar/>
-        <ProfileForm/>
+        <div style={{display: 'flex', height: '75vh', alignItems: 'center', justifyContent: 'center'}}>
+            <ProfileForm/>
+        </div>
         <BottomOfThePage/>
     </div>
   )

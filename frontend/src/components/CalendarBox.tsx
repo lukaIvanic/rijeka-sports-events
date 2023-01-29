@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Card, CardHeader, CardBody } from 'reactstrap';
+import ShowResultOfTheGame from './ShowResultOfTheGame';
 
 const CalendarBox = () => {
   const [date, setDate] = useState(new Date());
@@ -15,11 +16,11 @@ const CalendarBox = () => {
   };
 
   return (
-    <Card>
+    <Card style={{marginBottom: '20px'}}>
       <CardHeader className="fixed-height-card-header" style={{ textAlign: 'center' }}>
         <div className="row">
           <div className="col-2">
-            <button className=" btn btn-secondary fixed-width-btn gray-bg" onClick={previousDay}>
+            <button className="btn btn-secondary fixed-width-btn" onClick={previousDay}>
             {'<'}
             </button>
           </div>
@@ -32,7 +33,7 @@ const CalendarBox = () => {
           })}</h4>
           </div>
           <div className="col-2">
-            <button className="btn btn-secondary fixed-width-btn gray-bg" onClick={nextDay}>
+            <button className="btn btn-secondary fixed-width-btn" onClick={nextDay}>
             {'>'}
             </button>
           </div>
@@ -41,6 +42,30 @@ const CalendarBox = () => {
       </CardHeader>
       <CardBody>
         {/* Calendar content goes here */}
+        <ShowResultOfTheGame
+          homeClub="Home Club"
+          awayClub="Away Club"
+          firstTeamGoals={1}
+          secondTeamGoals={1}
+          onSave={(firstTeamGoals: number, secondTeamGoals: number) => console.log('${firstTeamGoals}-${secondTeamGoals}')}
+        />
+        <hr />
+        <ShowResultOfTheGame
+          homeClub="Home Club"
+          awayClub="Away Club"
+          firstTeamGoals={1}
+          secondTeamGoals={1}
+          onSave={(firstTeamGoals: number, secondTeamGoals: number) => console.log('${firstTeamGoals}-${secondTeamGoals}')}
+        />
+        <hr />
+        <ShowResultOfTheGame
+          homeClub="Home Club"
+          awayClub="Away Club"
+          firstTeamGoals={1}
+          secondTeamGoals={1}
+          onSave={(firstTeamGoals: number, secondTeamGoals: number) => console.log('${firstTeamGoals}-${secondTeamGoals}')}
+        />
+        <hr />
       </CardBody>
     </Card>
   );

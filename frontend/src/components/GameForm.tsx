@@ -94,7 +94,7 @@ const GameForm: React.FC<Props> = () => {
               required
             />
           </FormGroup>
-          <Button type="submit" className="btn btn-primary w-100">
+          <Button type="submit" className="btn btn-secondary w-100">
             Submit
           </Button>
         </Form>
