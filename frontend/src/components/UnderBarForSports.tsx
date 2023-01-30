@@ -14,16 +14,16 @@ const UnderBarForSports = () => {
                     <a className="nav-link" href="/">Football</a>
                     </li>
                     <li className="nav-item">
-                    <a className="nav-link" href="/">Handball</a>
+                    <a className="nav-link" href="/handball">Handball</a>
                     </li>
                     <li className="nav-item">
-                    <a className="nav-link" href="/">Basketball</a>
+                    <a className="nav-link" href="/basketball">Basketball</a>
                     </li>
                     <li className="nav-item">
-                    <a className="nav-link" href="/">Waterpolo</a>
+                    <a className="nav-link" href="/waterpolo">Waterpolo</a>
                     </li>
                     <li className="nav-item">
-                    <a className="nav-link" href="/">Volleyball</a>
+                    <a className="nav-link" href="/volleyball">Volleyball</a>
                     </li>
                 </ul>
             </div>
