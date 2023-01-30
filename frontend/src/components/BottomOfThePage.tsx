@@ -3,7 +3,7 @@ import React from 'react'
 export const BottomOfThePage = () => {
 
   return (
-    <footer className="bg-light py-3">
+    <footer className="bg-light py-3 fixed-bottom">
         <div className="container">
             <div className="row">
             <div className="col-12 col-md-4 text-md-center mx-auto">
