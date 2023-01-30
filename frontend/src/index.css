@@ -18,29 +18,17 @@ code {
   margin-right: 5px;
 }
 
-/*change colour of dropdown menu button to D9FFD8*/
-.btn  {
-  background-color: #D9FFD8;
-  /*remove border and make text black*/
-  border: none;
-  color: black;
+
+.fixed-height-card-header {
+  height: 58px;
 }
 
-/*on hover make it to darker tone of D9FFD8*/
-.btn:hover {
-  background-color: #C8EBC7;
-  border: none;
-  color: black;
+.game-form {
+  width: 70%;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
-/*on clicked make it D9FFD8*/
-.btn:active {
-  background-color: #D9FFD8;
-  border: none;
-  color: black;
-}
-
-/*change colour of class changeBackground to darker variant D9FFD8 on hover and make it rounder*/
 .changeBackground:hover {
   background-color: #C8EBC7;
   border-radius: 5px;
@@ -53,17 +41,14 @@ code {
   border-radius: 10px;
 }
 
-
-.fixed-height-card-header {
-  height: 58px;
+.changeBackground .dropdown-item:focus {
+  background-color: #e4ebe4;
+  color: black;
 }
 
-.gray-bg {
-  background-color: rgb(172, 172, 172);
-}
 
-.game-form {
-  width: 70%;
-  max-width: 100%;
-  margin: 0 auto;
+.AccountInfo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

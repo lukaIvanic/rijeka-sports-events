@@ -4,7 +4,7 @@ import CalendarAndResults from '../components/CalendarAndResults';
 import NavBar from '../components/NavBar';
 import UnderBarForSports from '../components/UnderBarForSports';
 
-const HomePage = () => {
+const HandballPage = () => {
   return (
     <div>
         <NavBar/>
@@ -15,4 +15,4 @@ const HomePage = () => {
   )
 }
 
-export default HomePage;
+export default HandballPage;

@@ -15,7 +15,7 @@ function MenuDropDown() {
             <DropdownItem href="/info">Account settings</DropdownItem>
             <DropdownItem href="/addEvent">Add event</DropdownItem>
             <DropdownItem divider />
-            <DropdownItem href="/login">Log out</DropdownItem>
+            <DropdownItem href="/login">Sign in</DropdownItem>
           </DropdownMenu>
       </Dropdown>
     </Nav>

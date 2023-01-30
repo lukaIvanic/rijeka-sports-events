@@ -1,21 +1,21 @@
 import React from 'react'
+import { AddLeague } from '../components/AddLeague';
 import BottomOfThePage from '../components/BottomOfThePage';
-import LoginForm from '../components/LogInForm';
 import NavBar from '../components/NavBar'
 import UnderBarForSports from '../components/UnderBarForSports';
 
 
 
-const LogInPage = () => {
+const AddLeaguePage = () => {
   return (
     <div>
         <NavBar />
         <UnderBarForSports/>
-        <LoginForm />
+        <AddLeague />
         <BottomOfThePage />
     </div>
 
   );
 };
 
-export default LogInPage;
+export default AddLeaguePage;

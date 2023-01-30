@@ -1,21 +1,21 @@
 import React from 'react'
 import BottomOfThePage from '../components/BottomOfThePage';
-import LoginForm from '../components/LogInForm';
+import RegisterUserForm from '../components/RegisterUserForm';
 import NavBar from '../components/NavBar'
 import UnderBarForSports from '../components/UnderBarForSports';
 
 
 
-const LogInPage = () => {
+const RegisterUserPage = () => {
   return (
     <div>
         <NavBar />
         <UnderBarForSports/>
-        <LoginForm />
+        <RegisterUserForm />
         <BottomOfThePage />
     </div>
 
   );
 };
 
-export default LogInPage;
+export default RegisterUserPage;
