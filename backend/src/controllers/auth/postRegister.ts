@@ -55,6 +55,8 @@ const postRegister = async (req: Request<{}, {}, { username: string, password: s
             mail,
             username,
             type,
+            sport: profileBody.sport ? profileBody.sport : "",
+            league: profile.league ? profileBody.league : "",
         }, process.env.TOKEN_KEY as string, { expiresIn: '30d' })
 
         res.status(201).json({
@@ -62,6 +64,8 @@ const postRegister = async (req: Request<{}, {}, { username: string, password: s
             token,
             type,
             username: profile.username,
+            sport: profileBody.sport ? profileBody.sport : "",
+            league: profile.league ? profileBody.league : "",
             _id: profile._id
         },
         )

@@ -15,6 +15,8 @@ const postLogin = async (req: Request<{}, {}, { password: string, mail: string }
                 userId: profile._id,
                 mail: profile.mail,
                 username: profile.username,
+                sport: profile.sport,
+                league: profile.league,
                 type: profile.type,
             }, process.env.TOKEN_KEY as string, { expiresIn: '30d' })
 
@@ -23,6 +25,8 @@ const postLogin = async (req: Request<{}, {}, { password: string, mail: string }
                 token,
                 username: profile.username,
                 type: profile.type,
+                sport: profile.sport,
+                league: profile.league,
                 _id: profile._id
             },
             )

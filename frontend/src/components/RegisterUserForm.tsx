@@ -17,7 +17,6 @@ const RegisterUserForm:FC<rufProps> = ({getAllLeagues, leagues}) => {
     const [sport, setSport] = useState("")
     const [league, setLeague] = useState("")
 
-    const [availableLeagues, setAvailableLeagues] = useState([])
     const navigate = useNavigate();
 
     const handleSportChange = (e: any) => {

@@ -7,7 +7,7 @@ const Joi: any = _Joi.extend(JoiDate)
 import ejv from 'express-joi-validation'
 const validator = ejv.createValidator({})
 
-import { postLeague, getLeagues } from '../controllers/league/leagueControllers'
+import { postLeague, getLeagues, getLeague } from '../controllers/league/leagueControllers'
 // import { protect } from '../middleware/authMiddleware'
 
 const leagueSchema = Joi.object({
@@ -17,5 +17,6 @@ const leagueSchema = Joi.object({
 
 router.post('/create', validator.body(leagueSchema), postLeague)
 router.get('/all', getLeagues)
+router.get('/:id', getLeague)
 
 export default router
