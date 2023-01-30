@@ -9,7 +9,7 @@ const HandballPage = () => {
     <div>
         <NavBar/>
         <UnderBarForSports/>
-        <CalendarAndResults/>
+        {/* <CalendarAndResults/> */}
         <BottomOfThePage/>
     </div>
   )

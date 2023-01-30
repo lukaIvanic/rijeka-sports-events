@@ -9,7 +9,7 @@ const WaterpoloPage = () => {
     <div>
         <NavBar/>
         <UnderBarForSports/>
-        <CalendarAndResults/>
+        {/* <CalendarAndResults/> */}
         <BottomOfThePage/>
     </div>
   )

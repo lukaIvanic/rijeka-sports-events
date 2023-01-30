@@ -1,9 +1,14 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { Card, CardHeader, CardBody } from 'reactstrap';
 import ShowResultOfTheGame from './ShowResultOfTheGame';
 
-const CalendarBox = () => {
-  const [date, setDate] = useState(new Date());
+type cbProps = {
+  date: Date;
+  setDate: any;
+} 
+
+const CalendarBox: FC<cbProps> = ({date, setDate}) => {
+  
 
   const previousDay = () => {
     // update the date to the previous day

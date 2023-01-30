@@ -24,16 +24,16 @@ const postLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         if (profile && (yield bcryptjs_1.default.compare(password, profile.password))) {
             const token = jsonwebtoken_1.default.sign({
                 userId: profile._id,
-                mail,
-                role: profile.type,
-                status: profile.status
+                mail: profile.mail,
+                username: profile.username,
+                type: profile.type,
             }, process.env.TOKEN_KEY, { expiresIn: '30d' });
             return res.status(200).json({
                 profileDetails: {
                     mail: profile.mail,
                     token,
                     username: profile.username,
-                    role: profile.type,
+                    type: profile.type,
                     _id: profile._id
                 },
             });

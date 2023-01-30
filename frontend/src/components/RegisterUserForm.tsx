@@ -1,18 +1,43 @@
-import React from 'react'
+import { stringify } from 'querystring';
+import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux';
 import {Link, Routes, Route, useNavigate} from 'react-router-dom';
+import {getLeagueActions} from "../store/actions/leagueActions"
 
+type rufProps = {
+  leagues?: string[];
+  getAllLeagues?: any;
+}
 
-const RegisterUserForm = () => {
+//@ts-ignore
+const RegisterUserForm:FC<rufProps> = ({getAllLeagues, leagues}) => {
+    const [mail, setMail] = useState("")
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
+    const [sport, setSport] = useState("")
+    const [league, setLeague] = useState("")
+
+    const [availableLeagues, setAvailableLeagues] = useState([])
     const navigate = useNavigate();
+
+    const handleSportChange = (e: any) => {
+      setSport(e.target.value)
+    }
   
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        navigate('/login');
+        //@ts-ignore
+        console.log(event.target.value)
     };
 
     const handleAddLeague = () => {
       navigate('/addLeague');
     };
+
+    useEffect(() => {
+      getAllLeagues()
+    }, [])
+    
 
   return (
     <div className="d-flex justify-content-center align-items-center" style={{ height: '75vh' }}>
@@ -31,8 +56,8 @@ const RegisterUserForm = () => {
         </div>
         <div className="form-group">
             <label htmlFor="sport">Select sport</label>
-            <select id="sport" className="form-control">
-                <option value="default" selected disabled hidden>Choose sport</option>
+            <select id="sport" className="form-control" value={sport} onChange={handleSportChange}>
+                <option value="default" disabled hidden>Choose sport</option>
                 <option value="football">Football</option>
                 <option value="handball">Handball</option>
                 <option value="basketball">Basketball</option>
@@ -44,7 +69,7 @@ const RegisterUserForm = () => {
             <label htmlFor="league">Select league</label>
             <select id="league" className="form-control">
                 <option value="default" selected disabled hidden>Choose league</option>
-                <option value="HNL">HNL</option>
+                {leagues.map((l: any) => <option value={l.name}>{l.name}</option>)}
             </select>
         </div>
         <button type="submit" className="btn btn-secondary">
@@ -57,5 +82,18 @@ const RegisterUserForm = () => {
     </div>
   )
 }
+//@ts-ignore
+const mapStoreStateToProps = ({league})=>{
+  return {
+    ...league
+  }
+}
 
-export default RegisterUserForm;
+
+const mapActionsToProps = (dispatch: any) => {
+  return {
+    ...getLeagueActions(dispatch)
+  }
+}
+
+export default connect(mapStoreStateToProps, mapActionsToProps)(RegisterUserForm)

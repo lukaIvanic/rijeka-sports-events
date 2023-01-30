@@ -21,7 +21,7 @@ const postRegister = async (req: Request<{}, {}, { username: string, password: s
         let { username, password, mail, type, sport, league } = req.body
         if (type !== 'CLUB') type = 'USER'
         if (type === "CLUB" && !(sport && league)) {
-            return res.status(400).send({message: "The club needs to have a sport and a league."})
+            return res.status(400).send({ message: "The club needs to have a sport and a league." })
         }
         const mailTaken = await Profile.exists({ mail: mail.toLowerCase() })
         if (mailTaken) {
@@ -58,14 +58,13 @@ const postRegister = async (req: Request<{}, {}, { username: string, password: s
         }, process.env.TOKEN_KEY as string, { expiresIn: '30d' })
 
         res.status(201).json({
-            profileDetails: {
-                mail: profile.mail,
-                token,
-                type,
-                username: profile.username,
-                _id: profile._id
-            },
-        })
+            mail: profile.mail,
+            token,
+            type,
+            username: profile.username,
+            _id: profile._id
+        },
+        )
 
     } catch (e: any) {
         console.log(e)

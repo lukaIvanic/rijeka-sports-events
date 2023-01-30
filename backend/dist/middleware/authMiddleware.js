@@ -23,9 +23,6 @@ const protect = (req, res, next) => __awaiter(void 0, void 0, void 0, function* 
         token = token.split(' ')[1];
         const decoded = jsonwebtoken_1.default.verify(token, process.env.TOKEN_KEY);
         req.user = decoded;
-        if (req.user.status !== "Active") {
-            return res.status(401).send({ message: "Pending Account. Please Verify Your Email." });
-        }
     }
     catch (err) {
         return res.status(401).send({ message: "Invalid Token." });

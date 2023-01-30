@@ -4,12 +4,14 @@ import db from "./config/db"
 import authRouter from "./routes/AuthRouter"
 import gameRouter from "./routes/GameRouter"
 import leagueRouter from "./routes/LeagueRouter"
+import cors from "cors"
 
 dotenv.config()
 db()
 const app = express();
 const PORT: number = 5000;
 
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 

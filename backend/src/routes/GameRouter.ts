@@ -7,7 +7,7 @@ const Joi: any = _Joi.extend(JoiDate)
 import ejv from 'express-joi-validation'
 const validator = ejv.createValidator({})
 
-import { postGame, patchScore, addScore, removeScore, deleteScore } from '../controllers/game/gameControllers'
+import { postGame, patchScore, addScore, removeScore, deleteScore, getGamesFromSport } from '../controllers/game/gameControllers'
 import { protect } from '../middleware/authMiddleware'
 
 const gameSchema = Joi.object({
@@ -31,6 +31,7 @@ const removeScoreSchema = Joi.object({
     sideRemoved: Joi.number().valid(0,1).required()
 })
 
+router.get('/get/:sport/:timestamp', protect, getGamesFromSport)
 router.post('/create', validator.body(gameSchema), protect, postGame)
 router.patch('/update/whole/:id', validator.body(updateWholeScoreSchema), protect, patchScore)
 router.patch('/update/add/:id', validator.body(addScoreSchema), protect, addScore)

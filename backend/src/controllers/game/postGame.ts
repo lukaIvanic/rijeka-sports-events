@@ -2,6 +2,7 @@ import Game, { IGame } from '../../models/GameSchema'
 import { Request, Response } from 'express'
 import Profile from '../../models/ProfileSchema';
 import League from '../../models/LeagueSchema';
+import dayjs from "dayjs"
 
 type GameBody = {
     time: string;
@@ -38,13 +39,15 @@ const postGame = async (req: Request<{}, {}, { time: Date, clubs: string[], spor
             return res.status(400).send({ message: "Club doesnt belong to selected league." })
         }
 
-        const gameExists = await Game.exists({ sport, time, league, clubs })
+        const ts = dayjs(time).unix().toString()
+
+        const gameExists = await Game.exists({ sport, time: ts, league, clubs })
         if (gameExists) {
             return res.status(409).send({ message: 'Game already exists.' })
         }
 
         const gameBody: GameBody = {
-            time: new Date(time).getTime().toString(), clubs, sport, league, result: "0-0", createdBy: req.user?.userId
+            time: ts, clubs, sport, league, result: "0-0", createdBy: req.user?.userId
         }
 
         const newGame: IGame | null = await Game.create(gameBody)

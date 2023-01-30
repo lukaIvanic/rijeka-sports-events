@@ -31,7 +31,8 @@ const ProfileSchema = new mongoose_1.Schema({
     type: { type: String, required: true, default: 'USER' },
     games: [{ type: mongoose_1.default.Schema.Types.ObjectId, ref: 'Game' }],
     sport: { type: String },
-    league: { type: String },
+    league: { type: mongoose_1.default.Schema.Types.ObjectId, ref: 'League' },
+    profilePicture: { type: String, default: 'NPP' }
 });
 const Profile = (0, mongoose_1.model)("Profile", ProfileSchema);
 exports.default = Profile;

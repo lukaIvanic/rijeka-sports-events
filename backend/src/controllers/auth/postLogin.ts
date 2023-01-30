@@ -19,14 +19,13 @@ const postLogin = async (req: Request<{}, {}, { password: string, mail: string }
             }, process.env.TOKEN_KEY as string, { expiresIn: '30d' })
 
             return res.status(200).json({
-                profileDetails: {
-                    mail: profile.mail,
-                    token,
-                    username: profile.username,
-                    type: profile.type,
-                    _id: profile._id
-                },
-            })
+                mail: profile.mail,
+                token,
+                username: profile.username,
+                type: profile.type,
+                _id: profile._id
+            },
+            )
         }
         return res.status(400).send({ message: 'Invalid credentials.' })
 

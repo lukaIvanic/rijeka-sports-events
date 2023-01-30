@@ -12,23 +12,38 @@ const express_joi_validation_1 = __importDefault(require("express-joi-validation
 const validator = express_joi_validation_1.default.createValidator({});
 const authControllers_1 = require("../controllers/auth/authControllers");
 const authMiddleware_1 = require("../middleware/authMiddleware");
+const multer_1 = __importDefault(require("multer"));
+const upload = (0, multer_1.default)({
+    limits: {
+        fileSize: 1e8
+    },
+    fileFilter(req, file, cb) {
+        cb(undefined, true);
+    }
+});
 const registerSchema = Joi.object({
     username: Joi.string().min(3).max(24).required(),
     password: Joi.string().min(8).max(48).required(),
     mail: Joi.string().email().required(),
-    birthdate: Joi.date().format('YYYY-MM-DD').raw().required(),
+    type: Joi.string().valid("USER", "CLUB").required(),
+    sport: Joi.string(),
+    league: Joi.string(),
 });
 const loginSchema = Joi.object({
     mail: Joi.string().required(),
     password: Joi.string().min(8).max(48).required(),
 });
+const updateLeagueSchema = Joi.object({
+    league: Joi.string().required()
+});
 router.post('/register', validator.body(registerSchema), authControllers_1.postRegister);
 router.post('/login', validator.body(loginSchema), authControllers_1.postLogin);
 router.get("/me", authMiddleware_1.protect, authControllers_1.getUser);
+router.patch('/update/:id', validator.body(updateLeagueSchema), authMiddleware_1.protect, authControllers_1.patchUpdate);
+router.patch('/update/:id', upload.single("profilePicture"), authMiddleware_1.protect, authControllers_1.updateProfilePicture);
+router.delete('/delete/:id', authMiddleware_1.protect, authControllers_1.deleteProfile);
 router.get('/*', authControllers_1.errorHandler);
 // router.get('/confirm/:code', verifyUser)
 // router.get('/confirm/resend/:id', resendConfirmationMail)
-// router.patch('/reset', protect, resetPassword)
-router.get('/*', authControllers_1.errorHandler);
 exports.default = router;
 //# sourceMappingURL=AuthRouter.js.map
