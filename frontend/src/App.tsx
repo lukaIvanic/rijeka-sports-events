@@ -22,7 +22,7 @@ function App() {
           <Route path="/register" element={<RegisterUserPage />} />
           <Route path="/addLeague" element={<AddLeaguePage />} />
           <Route path="/login" element={<LogInPage />} />
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<Dashboard />} /> 
         </Routes>
       </Router>
       <ToastContainer />

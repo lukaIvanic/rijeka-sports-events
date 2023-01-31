@@ -50,15 +50,17 @@ const postRegister = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             mail,
             username,
             type,
+            sport: profileBody.sport ? profileBody.sport : "",
+            league: profile.league ? profileBody.league : "",
         }, process.env.TOKEN_KEY, { expiresIn: '30d' });
         res.status(201).json({
-            profileDetails: {
-                mail: profile.mail,
-                token,
-                type,
-                username: profile.username,
-                _id: profile._id
-            },
+            mail: profile.mail,
+            token,
+            type,
+            username: profile.username,
+            sport: profileBody.sport ? profileBody.sport : "",
+            league: profile.league ? profileBody.league : "",
+            _id: profile._id
         });
     }
     catch (e) {

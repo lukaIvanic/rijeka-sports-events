@@ -28,14 +28,14 @@ const HomePage: FC<hpProps> = ({setUserDetails, games, getGamesFromSport}) => {
     }
   }, [])
 
-  useEffect(()=> {
-    getGamesFromSport(selectedSport, date.getTime())
-  }, [selectedSport, date])
+  // useEffect(()=> {
+  //   getGamesFromSport(selectedSport, date.getTime())
+  // }, [selectedSport, date])
   return (
     <div>
         <NavBar/>
         <UnderBarForSports setSelectedSport={setSelectedSport}/>
-        <CalendarAndResults date={date} setDate={setDate}/>
+        <CalendarAndResults date={date} setDate={setDate} selectedSport={selectedSport}/>
         <BottomOfThePage/>
     </div>
   )

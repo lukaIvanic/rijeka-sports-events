@@ -1,14 +1,20 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import { Card, CardHeader, CardBody } from 'reactstrap';
+import { getGameActions } from '../store/actions/gameActions';
 import ShowGame from './ShowGame';
 import ShowResultOfTheGame from './ShowResultOfTheGame';
 
 type cbProps = {
   date: Date;
   setDate: any;
+  games?: any[];
+  getGamesFromSport?: any;
+  selectedSport: string;
+  setActiveGame: any;
 } 
 
-const CalendarBox: FC<cbProps> = ({date, setDate}) => {
+const CalendarBox: FC<cbProps> = ({date, setDate, games, getGamesFromSport, selectedSport, setActiveGame}) => {
   
 
   const previousDay = () => {
@@ -20,6 +26,14 @@ const CalendarBox: FC<cbProps> = ({date, setDate}) => {
     // update the date to the next day
     setDate(new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1));
   };
+
+  useEffect(() => {
+    getGamesFromSport(selectedSport, 1675090800)
+  }, [selectedSport])
+
+  useEffect(() => {
+    console.log(games)
+  }, [games])
 
   return (
     <Card style={{marginBottom: '20px'}}>
@@ -47,28 +61,26 @@ const CalendarBox: FC<cbProps> = ({date, setDate}) => {
 
       </CardHeader>
       <CardBody>
-        {/* Calendar content goes here */}
-        <ShowGame
-          homeClub="Home Club"
-          awayClub="Away Club"
-          timeOfTheGame='12:00'
-        />
-        <hr />
-        <ShowGame
-          homeClub="Home Club"
-          awayClub="Away Club"
-          timeOfTheGame='12:00'
-        />
-        <hr />
-        <ShowGame
-          homeClub="Home Club"
-          awayClub="Away Club"
-          timeOfTheGame='12:00'
-        />
-        <hr />
+        {games && games.map((g: any) => <><ShowGame setActiveGame={setActiveGame} key={g._id} game={g} homeClub={g.clubs[0].username} awayClub={g.clubs[1].username} timeOfTheGame={`${new Date(Number(g.time)).getHours().toString().padStart(2, "0")}:${new Date(Number(g.time)).getMinutes().toString().padStart(2, "0")}`}/><hr /> </>)}
+
       </CardBody>
     </Card>
   );
 };
 
-export default CalendarBox;
+//@ts-ignore
+const mapStoreStateToProps = ({game})=>{
+  return {
+    ...game
+  }
+}
+
+
+const mapActionsToProps = (dispatch: any) => {
+  return {
+    ...getGameActions(dispatch)
+  }
+}
+
+
+export default connect(mapStoreStateToProps,mapActionsToProps) (CalendarBox);

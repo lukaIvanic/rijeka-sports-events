@@ -31,7 +31,7 @@ const removeScoreSchema = Joi.object({
     sideRemoved: Joi.number().valid(0,1).required()
 })
 
-router.get('/get/:sport/:timestamp', protect, getGamesFromSport)
+router.get('/get/:sport', protect, getGamesFromSport)
 router.post('/create', validator.body(gameSchema), protect, postGame)
 router.patch('/update/whole/:id', validator.body(updateWholeScoreSchema), protect, patchScore)
 router.patch('/update/add/:id', validator.body(addScoreSchema), protect, addScore)
