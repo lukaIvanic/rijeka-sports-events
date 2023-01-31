@@ -17,7 +17,9 @@ const AccountInfo: FC<aiProps> = ({ userDetails, getLeague }) => {
 
   useEffect(() => {
     const ok = async () => {
+      console.log(userDetails)
       if (userDetails && userDetails.league && userDetails.profilePicture){
+        console.log("in")
         setLeagueName((await getLeague(userDetails.league)).league.name)
         setProfilePicture(userDetails.profilePicture === "NPP" ? defProf : userDetails.profilePicture)
       }

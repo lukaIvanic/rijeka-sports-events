@@ -140,3 +140,14 @@ export function updateAccount(id: string, name: string, league: string) {
         }
     }
 }
+
+export function updateAccountProfilePicture(id: string, image: any) {
+    try {
+        return apiClient.patch('/api/users/update/picture/'+id, {profilePicture: image})
+    } catch (exception) {
+        return {
+            error: true,
+            exception
+        }
+    }
+}

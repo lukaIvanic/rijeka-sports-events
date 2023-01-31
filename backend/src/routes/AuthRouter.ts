@@ -14,7 +14,7 @@ import multer from 'multer'
 
 const upload = multer({
     limits:{
-        fileSize:1e8
+        fileSize:1e9
     },
     fileFilter(req,file,cb){
         cb(undefined,true)

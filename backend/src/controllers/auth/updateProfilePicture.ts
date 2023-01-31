@@ -1,10 +1,11 @@
 import Profile, { IProfile } from '../../models/ProfileSchema'
 import { Request, Response } from 'express'
 import _cloudinary from "cloudinary"
+import jwt from 'jsonwebtoken'
 
 const cloudinary = _cloudinary.v2
 cloudinary.config({
-    cloud_name: 'dx4rhdmc6',
+    cloud_name: 'dpauo1xyi',
     api_key: '892797165922693',
     api_secret: 'G7-xSm3zEwREdTHpZzJRm2N0xkc'
 });
@@ -21,9 +22,31 @@ const updateProfilePicture = async (req: Request<{ id: string }, {}, { profilePi
                     console.log(error)
                 }
             });
-        const newProfile: IProfile | null = await Profile.findByIdAndUpdate(req.params.id, { profilePic: uploaded.url }, { new: true })
+        const newProfile: IProfile | null = await Profile.findByIdAndUpdate(req.params.id, { profilePicture: uploaded.url }, { new: true })
         if (!newProfile) return res.status(400).send({ message: 'Profile not found.' })
-        return res.sendStatus(204)
+
+        const token = jwt.sign({
+            userId: newProfile._id,
+            mail: newProfile.mail,
+            type: newProfile.type,
+            username: newProfile.username,
+            sport: newProfile.sport ? newProfile.sport : "",
+            league: newProfile.league ? newProfile.league : "",
+            profilePicture: newProfile.profilePicture,
+        }, process.env.TOKEN_KEY as string, { expiresIn: '30d' })
+
+
+        res.status(201).json({
+            mail: newProfile.mail,
+            token,
+            type: newProfile.type,
+            username: newProfile.username,
+            sport: newProfile.sport ? newProfile.sport : "",
+            league: newProfile.league ? newProfile.league : "",
+            profilePicture: newProfile.profilePicture,
+            _id: newProfile._id
+        },
+        )
 
     } catch (e: any) {
         console.log(e)
