@@ -9,6 +9,8 @@ interface Props {
   onSave: (firstTeamGoals: number, secondTeamGoals: number) => void
 }
 
+const logoUrl = "../logo.jpg"
+
 const ShowResultOfTheGame: React.FC<Props> = ({ homeClub, awayClub, firstTeamGoals, secondTeamGoals, onSave }) => {
   const [modal, setModal] = useState(false)
   const [editedFirstTeamGoals, setEditedFirstTeamGoals] = useState(firstTeamGoals)
@@ -23,7 +25,13 @@ const ShowResultOfTheGame: React.FC<Props> = ({ homeClub, awayClub, firstTeamGoa
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-      <p style={{ textAlign: 'center' }}>{homeClub} {firstTeamGoals}:{secondTeamGoals} {awayClub}</p>
+      <div className="d-flex justify-content-center align-items-center">
+      <img src={logoUrl} className="mr-3" style={{ width: '50px', height: '50px', objectFit: 'contain' }} />
+      <p className="text-center">{homeClub} {firstTeamGoals}:{secondTeamGoals} {awayClub}</p>
+      <img src={logoUrl} className="ml-3" style={{ width: '50px', height: '50px', objectFit: 'contain' }} />
+    </div>
+
+
       <Button color="secondary" onClick={toggle} style={{ marginTop: '10px' }}>Edit</Button>
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Edit Result</ModalHeader>

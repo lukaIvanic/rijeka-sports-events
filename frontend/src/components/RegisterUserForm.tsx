@@ -46,19 +46,23 @@ const RegisterUserForm:FC<rufProps> = ({getAllLeagues, leagues, register}) => {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         //@ts-ignore
-        console.log(event.target.value)
-        if(!mail || !username || !password) return toast.error("You need to fill all the fields")
+        console.log(leagues)
+        if(!mail || !username || !password || !sport || !league) return toast.error("You need to fill all the fields")
         const userDetails = {
           mail: mail,
           username: username,
           password: password,
+          sport: sport,
+          league: league
         }
+        console.log(userDetails.sport)
+        console.log(userDetails.league)
         console.log(userDetails)
-        const answer = register(userDetails, navigate)
-        console.log(answer)
-        if (answer.error){
-          toast.error(answer.error.exception?.code === "ECONNABORTED" ? "Something went wrong. Retry Connection" : "Credentials incorrect")
-        }
+        //const answer = register(userDetails, navigate)
+        //console.log(answer)
+        //if (answer.error){
+          //toast.error(answer.error.exception?.code === "ECONNABORTED" ? "Something went wrong. Retry Connection" : "Credentials incorrect")
+        //}
     };
 
     const handleAddLeague = () => {

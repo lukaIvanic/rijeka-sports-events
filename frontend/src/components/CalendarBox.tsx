@@ -1,5 +1,6 @@
 import { FC, useState } from 'react';
 import { Card, CardHeader, CardBody } from 'reactstrap';
+import ShowGame from './ShowGame';
 import ShowResultOfTheGame from './ShowResultOfTheGame';
 
 type cbProps = {
@@ -47,28 +48,22 @@ const CalendarBox: FC<cbProps> = ({date, setDate}) => {
       </CardHeader>
       <CardBody>
         {/* Calendar content goes here */}
-        <ShowResultOfTheGame
+        <ShowGame
           homeClub="Home Club"
           awayClub="Away Club"
-          firstTeamGoals={1}
-          secondTeamGoals={1}
-          onSave={(firstTeamGoals: number, secondTeamGoals: number) => console.log('${firstTeamGoals}-${secondTeamGoals}')}
+          timeOfTheGame='12:00'
         />
         <hr />
-        <ShowResultOfTheGame
+        <ShowGame
           homeClub="Home Club"
           awayClub="Away Club"
-          firstTeamGoals={1}
-          secondTeamGoals={1}
-          onSave={(firstTeamGoals: number, secondTeamGoals: number) => console.log('${firstTeamGoals}-${secondTeamGoals}')}
+          timeOfTheGame='12:00'
         />
         <hr />
-        <ShowResultOfTheGame
+        <ShowGame
           homeClub="Home Club"
           awayClub="Away Club"
-          firstTeamGoals={1}
-          secondTeamGoals={1}
-          onSave={(firstTeamGoals: number, secondTeamGoals: number) => console.log('${firstTeamGoals}-${secondTeamGoals}')}
+          timeOfTheGame='12:00'
         />
         <hr />
       </CardBody>
