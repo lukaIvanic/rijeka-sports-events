@@ -55,7 +55,7 @@ export const getAllLeagues = async () => {
 
 export const getGamesFromSport = async (sport: string, timestamp: number) => {
     try {
-        return await apiClient.get(`/api/game/get/${sport}/${timestamp}`)
+        return await apiClient.get(`/api/game/get/${sport}`)
     } catch (exception) {
         return {
             error: true,

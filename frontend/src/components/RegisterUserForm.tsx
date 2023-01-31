@@ -17,8 +17,8 @@ const RegisterUserForm:FC<rufProps> = ({getAllLeagues, leagues, register}) => {
     const [mail, setMail] = useState("")
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-    const [sport, setSport] = useState("")
-    const [league, setLeague] = useState("")
+    const [sport, setSport] = useState("nogomet")
+    const [league, setLeague] = useState("1. ZNL")
 
     const navigate = useNavigate();
 
@@ -40,13 +40,18 @@ const RegisterUserForm:FC<rufProps> = ({getAllLeagues, leagues, register}) => {
 
 
     const handleSportChange = (e: any) => {
+      console.log(e.target.value)
       setSport(e.target.value)
     }
   
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         //@ts-ignore
-        console.log(leagues)
+        console.log(league)
+        console.log(!sport)
+        console.log(!mail)
+        console.log(!username)
+        console.log(!password)
         if(!mail || !username || !password || !sport || !league) return toast.error("You need to fill all the fields")
         const userDetails = {
           mail: mail,
@@ -93,18 +98,18 @@ const RegisterUserForm:FC<rufProps> = ({getAllLeagues, leagues, register}) => {
             <label htmlFor="sport">Select sport</label>
             <select id="sport" className="form-control" value={sport} onChange={handleSportChange}>
                 <option value="default" disabled hidden>Choose sport</option>
-                <option value="football">Football</option>
-                <option value="handball">Handball</option>
-                <option value="basketball">Basketball</option>
-                <option value="waterpolo">Waterpolo</option>
-                <option value="volleyball">Volleyball</option>
+                <option value="nogomet">Nogomet</option>
+                <option value="rukomet">rukomet</option>
+                <option value="kosarka">kosarka</option>
+                <option value="vaterpolo">vaterpolo</option>
+                <option value="odbojka">odbojka</option>
             </select>
         </div>
         <div className="form-group">
             <label htmlFor="league">Select league</label>
-            <select id="league" className="form-control" onChange={handleLeagueChange}>
-                <option value="default" selected disabled hidden>Choose league</option>
-                {leagues.map((l: any) => <option value={l.name}>{l.name}</option>)}
+            <select id="league" className="form-control" defaultValue={"nogomet"} onChange={handleLeagueChange}>
+                <option value="default" disabled hidden>Choose league</option>
+                {leagues.map((l: any) => <option key={l.name} value={l.name}>{l.name}</option>)}
             </select>
         </div>
         <button type="submit" className="btn btn-secondary">

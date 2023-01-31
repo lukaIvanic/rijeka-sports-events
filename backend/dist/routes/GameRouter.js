@@ -29,6 +29,7 @@ const addScoreSchema = Joi.object({
 const removeScoreSchema = Joi.object({
     sideRemoved: Joi.number().valid(0, 1).required()
 });
+router.get('/get/:sport/:timestamp', authMiddleware_1.protect, gameControllers_1.getGamesFromSport);
 router.post('/create', validator.body(gameSchema), authMiddleware_1.protect, gameControllers_1.postGame);
 router.patch('/update/whole/:id', validator.body(updateWholeScoreSchema), authMiddleware_1.protect, gameControllers_1.patchScore);
 router.patch('/update/add/:id', validator.body(addScoreSchema), authMiddleware_1.protect, gameControllers_1.addScore);

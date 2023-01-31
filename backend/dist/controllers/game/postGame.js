@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const GameSchema_1 = __importDefault(require("../../models/GameSchema"));
 const ProfileSchema_1 = __importDefault(require("../../models/ProfileSchema"));
 const LeagueSchema_1 = __importDefault(require("../../models/LeagueSchema"));
+const dayjs_1 = __importDefault(require("dayjs"));
 const postGame = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     try {
@@ -39,12 +40,13 @@ const postGame = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         if (club1.league.toString() !== leagueBase._id.toString() && leagueBase.name !== "FRIENDLY") {
             return res.status(400).send({ message: "Club doesnt belong to selected league." });
         }
-        const gameExists = yield GameSchema_1.default.exists({ sport, time, league, clubs });
+        const ts = (0, dayjs_1.default)(time).unix().toString();
+        const gameExists = yield GameSchema_1.default.exists({ sport, time: ts, league, clubs });
         if (gameExists) {
             return res.status(409).send({ message: 'Game already exists.' });
         }
         const gameBody = {
-            time: new Date(time).getTime().toString(), clubs, sport, league, result: "0-0", createdBy: (_a = req.user) === null || _a === void 0 ? void 0 : _a.userId
+            time: ts, clubs, sport, league, result: "0-0", createdBy: (_a = req.user) === null || _a === void 0 ? void 0 : _a.userId
         };
         const newGame = yield GameSchema_1.default.create(gameBody);
         res.status(201).send({ message: 'Game created.', game: newGame });

@@ -18,5 +18,6 @@ const leagueSchema = Joi.object({
 });
 router.post('/create', validator.body(leagueSchema), leagueControllers_1.postLeague);
 router.get('/all', leagueControllers_1.getLeagues);
+router.get('/:id', leagueControllers_1.getLeague);
 exports.default = router;
 //# sourceMappingURL=LeagueRouter.js.map
