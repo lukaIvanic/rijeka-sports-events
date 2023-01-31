@@ -11,7 +11,7 @@ function MenuDropDown() {
     <Nav className="changeBackground ml-auto" navbar>
       <Dropdown isOpen={dropdownOpen} toggle={()=>setDropdownOpen((p) => !p)}>
         <DropdownToggle nav>Menu</DropdownToggle>
-        <DropdownMenu right>
+        <DropdownMenu>
             <DropdownItem onClick={()=>navigate("/info")}>Account settings</DropdownItem>
             <DropdownItem onClick={()=>navigate("/addEvent")}>Add event</DropdownItem>
             <DropdownItem divider />

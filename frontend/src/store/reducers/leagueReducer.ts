@@ -11,6 +11,11 @@ const reducer = (state = initialState, action: any) => {
                 ...state,
                 leagues: action.leagues
             }
+        case leagueActions.SET_LEAGUE:
+            return {
+                ...state,
+                league: action.league
+            }
         default:
             return state
     }

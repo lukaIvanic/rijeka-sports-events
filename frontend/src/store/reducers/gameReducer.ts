@@ -11,6 +11,11 @@ const reducer = (state = initialState, action: any) => {
                 ...state,
                 games: action.games
             }
+        case gameActions.CREATE_GAME:
+            return {
+                ...state,
+                games: [...state.games, action.game]
+            }
         default:
             return state
     }

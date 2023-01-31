@@ -74,3 +74,25 @@ export const getLeague = async (id: string) => {
         }
     }
 }
+
+export function createLeague(name: string, sport: string) {
+    try {
+        return apiClient.post('/api/league/create', { name, sport })
+    } catch (exception) {
+        return {
+            error: true,
+            exception
+        }
+    }
+}
+
+export function createGame(game: any) {
+    try {
+        return apiClient.post('/api/game/create', game)
+    } catch (exception) {
+        return {
+            error: true,
+            exception
+        }
+    }
+}

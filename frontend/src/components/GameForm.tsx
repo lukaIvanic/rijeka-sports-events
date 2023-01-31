@@ -1,5 +1,9 @@
+import { connect } from 'react-redux';
 import React, { useState } from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { idText } from 'typescript';
+import { createGame } from '../api/api';
+import { toast } from 'react-toastify';
 
 
 interface Props {}
@@ -19,15 +23,53 @@ const GameForm: React.FC<Props> = () => {
     team2: ''
   });
 
+  const [sport, setSport] = useState<string>('');
+  const [league, setLeague] = useState<string>('');
+  const [team1, setTeam1] = useState<string>('');
+  const [team2, setTeam2] = useState<string>('');
+
+  const handleChangeSport = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const { value } = event.target;
+    setSport(value);
+  };
+
+  const handleChangeLeague = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const { value } = event.target;
+    setLeague(value);
+  };
+
+  const handleChangeTeam1 = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const { value } = event.target;
+    setTeam1(value);
+  };
+
+  const handleChangeTeam2 = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const { value } = event.target;
+    setTeam2(value);
+  };
+  
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log(formData);
-    // add your submit logic here
+    // add your submit logic here and use GameSchema.ts as a reference
+    if (!formData.date || !formData.time || !sport || !league || !team1 || !team2) return toast.error('You need to fill all the fields');
+    const gameDetails = {
+      date: formData.date,
+      time: formData.time,
+      sport: sport,
+      league: league,
+      team1: team1,
+      team2: team2
+    };
+    console.log(gameDetails);
+    const answer = await createGame(gameDetails);
+    console.log(answer);
   };
 
   return (
@@ -64,7 +106,7 @@ const GameForm: React.FC<Props> = () => {
               />
             </div>
               <div className="form-group">
-                <select id="sport" className="form-control">
+                <select id="sport" className="form-control" value={sport} onChange={handleChangeSport}>
                     <option value="default" selected disabled hidden>Choose sport</option>
                     <option value="football">Football</option>
                     <option value="handball">Handball</option>
@@ -74,13 +116,13 @@ const GameForm: React.FC<Props> = () => {
                 </select>
               </div>
               <div className="form-group">
-                <select id="league" className="form-control">
+                <select id="league" className="form-control" value={league} onChange={handleChangeLeague}>
                     <option value="default" selected disabled hidden>Choose league</option>
                     <option value="HNL">HNL</option>
                 </select>
               </div>
               <div className="form-group">
-                <select id="team1" className="form-control">
+                <select id="team1" className="form-control" value={team1} onChange={handleChangeTeam1}>
                     <option value="default" selected disabled hidden>Choose first team</option>
                     <option value="football">Football</option>
                     <option value="handball">Handball</option>
@@ -90,7 +132,7 @@ const GameForm: React.FC<Props> = () => {
                 </select>
               </div>
               <div className="form-group">
-                <select id="team2" className="form-control">
+                <select id="team2" className="form-control" value={team2} onChange={handleChangeTeam2}>
                     <option value="default" selected disabled hidden>Choose second team</option>
                     <option value="football">Football</option>
                     <option value="handball">Handball</option>
@@ -108,4 +150,10 @@ const GameForm: React.FC<Props> = () => {
   
 };
 
-export default GameForm;
+const mapActionsToProps = (dispatch: any) => {
+  return {
+    ...createGame(dispatch)
+  };
+}
+
+export default connect(null, mapActionsToProps)(GameForm);

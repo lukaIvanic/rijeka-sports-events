@@ -2,6 +2,7 @@ import * as api from '../../api/api'
 
 export const gameActions = {
     SET_GAMES_FROM_SPORT: 'GAME.SET_GAMES_FROM_SPORT',
+    CREATE_GAME: 'GAME.CREATE_GAME'
 }
 
 export const getGameActions = (dispatch: any) => {
@@ -20,6 +21,21 @@ export const getGamesFromSport = (sport: string, timestamp: number) => {
     return async (dispatch: any) => {
         const response = await api.getGamesFromSport(sport, timestamp)
         console.log("res", response)
+        //@ts-ignore
+        if (response.error) {
+            return {error:response}
+        } else {
+            //@ts-ignore
+            const games = response.data           
+            dispatch(setGamesFromSport(games))
+            return {}
+        }
+    }
+}
+
+export const createGame = (game: any) => {
+    return async (dispatch: any) => {
+        const response = await api.createGame(game)
         //@ts-ignore
         if (response.error) {
             return {error:response}
