@@ -7,10 +7,6 @@ import { AccountInfoPage } from './pages/AccountInfoPage';
 import AddEventPage from './pages/AddEventPage';
 import RegisterUserPage from './pages/RegisterUserPage';
 import AddLeaguePage from './pages/AddLeaguePage';
-import BasketballPage from './pages/BasketballPage';
-import HandballPage from './pages/HandballPage';
-import VolleyballPage from './pages/VolleyballPage';
-import WaterpoloPage from './pages/WaterpoloPage';
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
 import Dashboard from './components/Dashboard';

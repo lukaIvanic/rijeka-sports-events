@@ -47,14 +47,13 @@ const RegisterUserForm:FC<rufProps> = ({getAllLeagues, leagues, register}) => {
         event.preventDefault();
         //@ts-ignore
         console.log(event.target.value)
-        if(!mail || !username || !password || !sport || !league) return toast.error("You need to fill all the fields")
+        if(!mail || !username || !password) return toast.error("You need to fill all the fields")
         const userDetails = {
           mail: mail,
           username: username,
           password: password,
-          sport: sport,
-          league: league
         }
+        console.log(userDetails)
         const answer = register(userDetails, navigate)
         console.log(answer)
         if (answer.error){

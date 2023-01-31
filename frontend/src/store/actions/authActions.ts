@@ -32,7 +32,7 @@ const login = (userDetails: any, navigate: any) => {
             localStorage.setItem('user', JSON.stringify(userDetails))
 
             dispatch(setUserDetails(userDetails))
-            navigate('/')
+            navigate('/dashboard/')
             return {}
         }
     }

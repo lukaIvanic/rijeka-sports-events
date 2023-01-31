@@ -15,7 +15,7 @@ function MenuDropDown() {
             <DropdownItem onClick={()=>navigate("/dashboard/info")}>Account settings</DropdownItem>
             <DropdownItem onClick={()=>navigate("/dashboard/addEvent")}>Add event</DropdownItem>
             <DropdownItem divider />
-            <DropdownItem onClick={() => navigate("/dashboard/login")}>Sign in</DropdownItem>
+            <DropdownItem onClick={() => navigate("/login")}>Sign in</DropdownItem>
           </DropdownMenu>
       </Dropdown>
     </Nav>
