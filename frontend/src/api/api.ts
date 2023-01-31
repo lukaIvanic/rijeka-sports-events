@@ -42,6 +42,18 @@ export const register = async (data: any) => {
     }
 }
 
+
+export const getCurrentAccount = async () => {
+    try {
+        return await apiClient.get('/api/users/me')
+    } catch (exception) {
+        return {
+            error: true,
+            exception
+        }
+    }
+}
+
 export const getAllLeagues = async () => {
     try {
         return await apiClient.get('/api/league/all')
@@ -56,6 +68,16 @@ export const getAllLeagues = async () => {
 export const getGamesFromSport = async (sport: string, timestamp: number) => {
     try {
         return await apiClient.get(`/api/game/get/${sport}`)
+    } catch (exception) {
+        return {
+            error: true,
+            exception
+        }
+    }
+}
+export const getAllClubs = async (sport: string) => {
+    try {
+        return await apiClient.get(`/api/users/get/all/${sport}`)
     } catch (exception) {
         return {
             error: true,
@@ -89,6 +111,28 @@ export function createLeague(name: string, sport: string) {
 export function createGame(game: any) {
     try {
         return apiClient.post('/api/game/create', game)
+    } catch (exception) {
+        return {
+            error: true,
+            exception
+        }
+    }
+}
+
+export function updateGame(id: string, result: string) {
+    try {
+        return apiClient.patch('/api/game/update/whole/'+id, {result})
+    } catch (exception) {
+        return {
+            error: true,
+            exception
+        }
+    }
+}
+
+export function updateAccount(id: string, name: string, league: string) {
+    try {
+        return apiClient.patch('/api/users/update/'+id, {name, league})
     } catch (exception) {
         return {
             error: true,

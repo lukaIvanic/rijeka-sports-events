@@ -1,7 +1,8 @@
 import { authActions } from "../actions/authActions"
 
 const initialState = {
-    userDetails: null
+    userDetails: null,
+    clubsFromSport: []
 }
 
 const reducer = (state = initialState, action: any) => {
@@ -10,6 +11,11 @@ const reducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 userDetails: action.userDetails
+            }
+        case authActions.SET_CLUBS_FROM_SPORT:
+            return {
+                ...state,
+                clubsFromSport: action.clubsFromSport
             }
         default:
             return state

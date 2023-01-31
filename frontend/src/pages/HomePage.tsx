@@ -18,19 +18,6 @@ const HomePage: FC<hpProps> = ({setUserDetails, games, getGamesFromSport}) => {
   const [selectedSport, setSelectedSport] = useState("nogomet")
   const [date, setDate] = useState(new Date());
 
-  useEffect(() => {
-    const userDetails = localStorage.getItem('user')
-    if (!userDetails) {
-      logout()
-    } else {
-      setUserDetails(JSON.parse(userDetails))
-      // connectSocket()
-    }
-  }, [])
-
-  // useEffect(()=> {
-  //   getGamesFromSport(selectedSport, date.getTime())
-  // }, [selectedSport, date])
   return (
     <div>
         <NavBar/>

@@ -18,8 +18,7 @@ const gameSchema = Joi.object({
 })
 
 const updateWholeScoreSchema = Joi.object({
-    result: Joi.string().required(),
-    goals: Joi.alternatives().try(Joi.string(), Joi.array())
+    result: Joi.string().required()
 })
 
 const addScoreSchema = Joi.object({

@@ -12,8 +12,8 @@ function MenuDropDown() {
       <Dropdown isOpen={dropdownOpen} toggle={()=>setDropdownOpen((p) => !p)}>
         <DropdownToggle nav>Menu</DropdownToggle>
         <DropdownMenu>
-            <DropdownItem onClick={()=>navigate("/dashboard/info")}>Account settings</DropdownItem>
-            <DropdownItem onClick={()=>navigate("/dashboard/addEvent")}>Add event</DropdownItem>
+            <DropdownItem onClick={()=>navigate("/info")}>Account settings</DropdownItem>
+            <DropdownItem onClick={()=>navigate("/addEvent")}>Add event</DropdownItem>
             <DropdownItem divider />
             <DropdownItem onClick={() => navigate("/login")}>Sign in</DropdownItem>
           </DropdownMenu>

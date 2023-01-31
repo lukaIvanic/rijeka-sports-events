@@ -24,12 +24,19 @@ const postGame = async (req: Request<{}, {}, { time: Date, clubs: string[], spor
         if (!club1 || !club2) {
             return res.status(400).send({ message: "Not able to find one of the clubs" })
         }
+        if (clubs[0] === clubs[1]) {
+            return res.status(400).send({ message: "Cant create game using the same club twice." })
+        }
         if (clubs[0] !== req.user.userId && clubs[1] !== req.user.userId) {
             return res.status(400).send({ message: "Cant create a game that doesnt involve your club" })
         }
         const leagueBase = await League.findOne({ name: league })
         if (!leagueBase) {
             return res.status(400).send({ message: "League not found." })
+        }
+
+        if (leagueBase.sport !== sport) {
+            return res.status(400).send({ message: "Sport is not from that league." })
         }
 
         if (club1.league.toString() !== club2.league.toString() && leagueBase.name !== "FRIENDLY") {

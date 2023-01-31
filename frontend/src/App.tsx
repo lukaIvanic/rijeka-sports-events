@@ -18,11 +18,10 @@ function App() {
         <div className="App">
         </div>
         <Routes>
-          <Route path="/dashboard/*" element={<Dashboard />} /> 
           <Route path="/register" element={<RegisterUserPage />} />
           <Route path="/addLeague" element={<AddLeaguePage />} />
           <Route path="/login" element={<LogInPage />} />
-          <Route path="/" element={<Dashboard />} /> 
+          <Route path="/*" element={<Dashboard />} /> 
         </Routes>
       </Router>
       <ToastContainer />

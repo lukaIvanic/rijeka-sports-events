@@ -10,17 +10,31 @@ import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
 import ChangeAccountSettingPage from "../pages/ChangeAccountSettingPage";
 import { login } from "../api/api";
+import { logout } from "../utils/logout";
+import { connect } from "react-redux";
+import { getAuthActions } from "../store/actions/authActions";
+import { getGameActions } from "../store/actions/gameActions";
+import { getLeagueActions } from "../store/actions/leagueActions";
 
-const Dashboard: React.FC = () => {
-    useEffect(()=>{
-        const userDetails = localStorage.getItem('user')
-        if (!userDetails){
-          //login()
-        }else{
-          //setUserDetails(JSON.parse(userDetails))
-          //connectSocket(JSON.parse(userDetails))
-        }
-      }, [])
+type dashboardProps = {
+  setUserDetails?: any;
+  getAllLeagues?: any;
+  getAllClubsUsingSport?: any;
+}
+
+const Dashboard: React.FC<dashboardProps> = ({setUserDetails, getAllLeagues, getAllClubsUsingSport}) => {
+  useEffect(() => {
+    const userDetails = localStorage.getItem('user')
+    if (!userDetails) {
+      logout()
+    } else {
+      setUserDetails(JSON.parse(userDetails))
+      getAllLeagues()
+      // getAllClubsUsingSport("nogomet")
+
+      // connectSocket()
+    }
+  }, [])
 
   return (
        <div>
@@ -34,4 +48,13 @@ const Dashboard: React.FC = () => {
   );
 };
 
-export default Dashboard;
+
+
+const mapActionsToProps = (dispatch: any) => {
+  return {
+    ...getAuthActions(dispatch),
+    ...getLeagueActions(dispatch)
+  }
+}
+
+export default connect(null, mapActionsToProps)(Dashboard)

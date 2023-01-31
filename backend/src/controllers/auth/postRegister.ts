@@ -30,7 +30,7 @@ const postRegister = async (req: Request<{}, {}, { username: string, password: s
 
         const leagueExists = await League.exists({ name: league, sport })
         if (!leagueExists) {
-            return res.status(409).send({ message: 'League doesnt exist.' })
+            return res.status(409).send({ message: 'League from that sport doesnt exist.' })
         }
 
         const usernameTaken = await Profile.exists({ username })

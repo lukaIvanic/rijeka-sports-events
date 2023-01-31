@@ -40,7 +40,7 @@ const LoginForm:FC<lfProps> = ({login}) => {
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="email">Email/Username</label>
-          <input type="email" className="form-control" id="email" value={usernameOrEmail} onChange={handleUOEChange}/>
+          <input type="text" className="form-control" id="email" value={usernameOrEmail} onChange={handleUOEChange}/>
         </div>
         <div className="form-group">
           <label htmlFor="password">Password</label>

@@ -18,6 +18,7 @@ const postLogin = async (req: Request<{}, {}, { password: string, mail: string }
                 sport: profile.sport,
                 league: profile.league,
                 type: profile.type,
+                profilePicture: profile.profilePicture
             }, process.env.TOKEN_KEY as string, { expiresIn: '30d' })
 
             return res.status(200).json({
@@ -27,6 +28,7 @@ const postLogin = async (req: Request<{}, {}, { password: string, mail: string }
                 type: profile.type,
                 sport: profile.sport,
                 league: profile.league,
+                profilePicture: profile.profilePicture,
                 _id: profile._id
             },
             )

@@ -28,10 +28,12 @@ const Results:FC<resultProps> = ({activeGame}) => {
       <CardHeader className="fixed-height-card-header">Results</CardHeader>
       <CardBody>
         {activeGame && <ShowResultOfTheGame
+          id={activeGame._id}
           homeClub={activeGame.clubs[0].username}
           awayClub={activeGame.clubs[1].username}
           firstTeamGoals={firstTeamGoals[0]}
-          secondTeamGoals={secondTeamGoals[0]}
+          secondTeamGoals={secondTeamGoals[1]}
+          result={activeGame.result}
           onSave={(editedFirstTeamGoals, editedSecondTeamGoals) => handleSave(0, editedFirstTeamGoals, editedSecondTeamGoals)}
         />}
         
