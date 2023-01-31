@@ -23,10 +23,10 @@ const GameForm: React.FC<Props> = () => {
     team2: ''
   });
 
-  const [sport, setSport] = useState<string>('');
-  const [league, setLeague] = useState<string>('');
-  const [team1, setTeam1] = useState<string>('');
-  const [team2, setTeam2] = useState<string>('');
+  const [sport, setSport] = useState<string>('nogomet');
+  const [league, setLeague] = useState<string>('HNL');
+  const [team1, setTeam1] = useState<string>('dinamo');
+  const [team2, setTeam2] = useState<string>('hajduk');
 
   const handleChangeSport = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = event.target;
@@ -108,11 +108,11 @@ const GameForm: React.FC<Props> = () => {
               <div className="form-group">
                 <select id="sport" className="form-control" value={sport} onChange={handleChangeSport}>
                     <option value="default" selected disabled hidden>Choose sport</option>
-                    <option value="football">Football</option>
-                    <option value="handball">Handball</option>
-                    <option value="basketball">Basketball</option>
-                    <option value="waterpolo">Waterpolo</option>
-                    <option value="volleyball">Volleyball</option>
+                    <option value="nogomet">nogomet</option>
+                    <option value="rukomet">rukomet</option>
+                    <option value="košarka">košarka</option>
+                    <option value="vaterpolo">vaterpolo</option>
+                    <option value="odbojka">odbojka</option>
                 </select>
               </div>
               <div className="form-group">
@@ -124,21 +124,17 @@ const GameForm: React.FC<Props> = () => {
               <div className="form-group">
                 <select id="team1" className="form-control" value={team1} onChange={handleChangeTeam1}>
                     <option value="default" selected disabled hidden>Choose first team</option>
-                    <option value="football">Football</option>
-                    <option value="handball">Handball</option>
-                    <option value="basketball">Basketball</option>
-                    <option value="waterpolo">Waterpolo</option>
-                    <option value="volleyball">Volleyball</option>
+                    <option value="dinamo">dinamo</option>
+                    <option value="hajduk">hajduk</option>
+                    <option value="rab">rab</option>
                 </select>
               </div>
               <div className="form-group">
                 <select id="team2" className="form-control" value={team2} onChange={handleChangeTeam2}>
                     <option value="default" selected disabled hidden>Choose second team</option>
-                    <option value="football">Football</option>
-                    <option value="handball">Handball</option>
-                    <option value="basketball">Basketball</option>
-                    <option value="waterpolo">Waterpolo</option>
-                    <option value="volleyball">Volleyball</option>
+                    <option value="dinamo">dinamo</option>
+                    <option value="hajduk">hajduk</option>
+                    <option value="rab">rab</option>
                 </select>
               </div>
             <Button type="submit" className="btn btn-secondary w-100 ">

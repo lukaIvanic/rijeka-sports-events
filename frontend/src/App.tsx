@@ -20,7 +20,9 @@ function App() {
         <Routes>
           <Route path="/dashboard/*" element={<Dashboard />} /> 
           <Route path="/register" element={<RegisterUserPage />} />
+          <Route path="/addLeague" element={<AddLeaguePage />} />
           <Route path="/login" element={<LogInPage />} />
+          <Route path="/" element={<HomePage />} />
         </Routes>
       </Router>
       <ToastContainer />

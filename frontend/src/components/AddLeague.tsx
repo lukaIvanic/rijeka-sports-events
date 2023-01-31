@@ -11,7 +11,7 @@ type alProps = {
 
 const AddLeague:FC<alProps> = ({createLeague}) => {
     const navigate = useNavigate();
-    const [sport, setSport] = useState("")
+    const [sport, setSport] = useState("nogomet")
     const [name, setName] = useState("")
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -21,11 +21,12 @@ const AddLeague:FC<alProps> = ({createLeague}) => {
             name: name,
             sport: sport
         }
-        const answer = await createLeague(leagueDetails, navigate)
-        console.log(answer)
-        if (answer.error){  
-            toast.error(answer.error)
-        }
+        console.log(leagueDetails)
+        //const answer = await createLeague(leagueDetails, navigate)
+        //console.log(answer)
+        //if (answer.error){  
+        //    toast.error(answer.error)
+        //}
         navigate('/register');
     };
 
@@ -49,11 +50,11 @@ const AddLeague:FC<alProps> = ({createLeague}) => {
           <label htmlFor="sport" >Select sport</label>
           <select id="sport" className="form-control" value={sport} onChange={handleSportChange}>
               <option value="default" selected disabled hidden>Choose sport</option>
-              <option value="football">Football</option>
-              <option value="handball">Handball</option>
-              <option value="basketball">Basketball</option>
-              <option value="waterpolo">Waterpolo</option>
-              <option value="volleyball">Volleyball</option>
+              <option value="nogomet">nogomet</option>
+              <option value="rukomet">rukomet</option>
+              <option value="kosarka">kosarka</option>
+              <option value="vaterpolo">vaterpolo</option>
+              <option value="odbojka">odbojka</option>
           </select>
       </div>
       <button type="submit" className="btn btn-secondary">

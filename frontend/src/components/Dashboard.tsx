@@ -28,7 +28,6 @@ const Dashboard: React.FC = () => {
             <Route path="/formular" element={<ChangeAccountSettingPage />} />
             <Route path="/info" element={<AccountInfoPage />} />
             <Route path="/addEvent" element={<AddEventPage />} />
-            <Route path="/addLeague" element={<AddLeaguePage />} />
             <Route path="/" element={<HomePage />} />
         </Routes>
        </div>
