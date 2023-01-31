@@ -9,9 +9,7 @@ const ChangeAccountSettingPage = () => {
     <div>
         <NavBar/>
         <UnderBarForSports/>
-        <div style={{display: 'flex', height: '75vh', alignItems: 'center', justifyContent: 'center'}}>
-            <ProfileForm/>
-        </div>
+        <ProfileForm/>
         <BottomOfThePage/>
     </div>
   )

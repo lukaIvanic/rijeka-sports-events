@@ -46,9 +46,3 @@ code {
   color: black;
 }
 
-
-.AccountInfo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}

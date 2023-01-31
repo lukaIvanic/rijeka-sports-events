@@ -26,10 +26,17 @@ const AccountInfo: FC<aiProps> = ({ userDetails, getLeague }) => {
   }, [userDetails])
 
   return (
-    <div className="d-flex justify-content-center align-items-center">
-      <Container className="d-flex">
-        <Col xs={12} md={4} className="mx-auto">
-          <img src={profilePicture} alt="logo" className="img-fluid mb-3" />
+    <div className="d-flex justify-content-center align-items-center position-relative" style={{ height: '75vh' }}>
+      <div className="link-top-left">
+        <Link to="/" className="position-absolute" style={{ top: 10, left: 10 }}>
+          <Button variant="secondary">
+            X
+          </Button>
+        </Link>
+      </div>
+      <div>
+        <Col>
+          <img src={profilePicture} alt="logo" className="img-fluid mb-3"  style={{ width: "50%" }}/>
           {userDetails && <>
             <h5 className="text-muted">User name:</h5>
             <p className="mb-3">{userDetails.username}</p>
@@ -44,7 +51,7 @@ const AccountInfo: FC<aiProps> = ({ userDetails, getLeague }) => {
             <Button variant="secondary">Edit profile</Button>
           </Link>
         </Col>
-      </Container>
+      </div>
     </div>
 
   );

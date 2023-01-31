@@ -2,6 +2,7 @@ import React, { FC, useState } from 'react'
 import { connect } from 'react-redux';
 import {Link, Routes, Route, useNavigate} from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { Button } from 'reactstrap';
 import { createLeague } from '../store/actions/leagueActions';
 
 type alProps = {
@@ -40,27 +41,34 @@ const AddLeague:FC<alProps> = ({createLeague}) => {
 
 
   return (
-    <div className="d-flex justify-content-center align-items-center" style={{ height: '75vh' }}>
-    <form onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label htmlFor="text">League name</label>
-        <input type="text" className="form-control" id="username" value={name} onChange={handleNameChange}/>
-      </div>
-      <div className="form-group">
-          <label htmlFor="sport" >Select sport</label>
-          <select id="sport" className="form-control" value={sport} onChange={handleSportChange}>
-              <option value="default" selected disabled hidden>Choose sport</option>
-              <option value="nogomet">nogomet</option>
-              <option value="rukomet">rukomet</option>
-              <option value="kosarka">kosarka</option>
-              <option value="vaterpolo">vaterpolo</option>
-              <option value="odbojka">odbojka</option>
-          </select>
-      </div>
-      <button type="submit" className="btn btn-secondary">
-          Create league
-      </button>
-    </form>
+    <div className="d-flex justify-content-center align-items-center position-relative" style={{ height: '75vh' }}>
+      <div className="link-top-left">
+          <Link to="/" className="position-absolute" style={{ top: 10, left: 10 }}>
+            <Button variant="secondary">
+              X
+            </Button>
+          </Link>
+        </div>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="text">League name</label>
+          <input type="text" className="form-control" id="username" value={name} onChange={handleNameChange}/>
+        </div>
+        <div className="form-group">
+            <label htmlFor="sport" >Select sport</label>
+            <select id="sport" className="form-control" value={sport} onChange={handleSportChange}>
+                <option value="default" selected disabled hidden>Choose sport</option>
+                <option value="nogomet">nogomet</option>
+                <option value="rukomet">rukomet</option>
+                <option value="kosarka">kosarka</option>
+                <option value="vaterpolo">vaterpolo</option>
+                <option value="odbojka">odbojka</option>
+            </select>
+        </div>
+        <button type="submit" className="btn btn-secondary">
+            Create league
+        </button>
+      </form>
   </div>
   )
 }
