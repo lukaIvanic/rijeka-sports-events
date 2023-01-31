@@ -2,7 +2,7 @@ import React from 'react';
 
 import Menu from './MenuDropDown';
 import { Link } from 'react-router-dom';
-const logoUrl = "./logo.jpg"
+const logoUrl = "../logo.jpg"
 
 const NavBar = () => {
   return (

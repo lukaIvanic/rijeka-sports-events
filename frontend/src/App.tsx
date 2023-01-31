@@ -13,6 +13,7 @@ import VolleyballPage from './pages/VolleyballPage';
 import WaterpoloPage from './pages/WaterpoloPage';
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
+import Dashboard from './components/Dashboard';
 
 function App() {
   return (
@@ -21,17 +22,9 @@ function App() {
         <div className="App">
         </div>
         <Routes>
-          <Route path="/formular" element={<ChangeAccountSettingPage />} />
-          <Route path="/login" element={<LogInPage />} />
-          <Route path="/info" element={<AccountInfoPage />} />
-          <Route path="/addEvent" element={<AddEventPage />} />
+          <Route path="/dashboard/*" element={<Dashboard />} /> 
           <Route path="/register" element={<RegisterUserPage />} />
-          <Route path="/addLeague" element={<AddLeaguePage />} />
-          <Route path="/basketball" element={<BasketballPage />} />
-          <Route path="/handball" element={<HandballPage />} />
-          <Route path="/volleyball" element={<VolleyballPage />} />
-          <Route path="/waterpolo" element={<WaterpoloPage />} />
-          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LogInPage />} />
         </Routes>
       </Router>
       <ToastContainer />
