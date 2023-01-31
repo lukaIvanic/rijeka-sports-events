@@ -11,11 +11,11 @@ function MenuDropDown() {
     <Nav className="changeBackground ml-auto" navbar>
       <Dropdown isOpen={dropdownOpen} toggle={()=>setDropdownOpen((p) => !p)}>
         <DropdownToggle nav>Menu</DropdownToggle>
-        <DropdownMenu right>
-            <DropdownItem onClick={()=>navigate("/info")}>Account settings</DropdownItem>
-            <DropdownItem onClick={()=>navigate("/addEvent")}>Add event</DropdownItem>
+        <DropdownMenu>
+            <DropdownItem onClick={()=>navigate("/dashboard/info")}>Account settings</DropdownItem>
+            <DropdownItem onClick={()=>navigate("/dashboard/addEvent")}>Add event</DropdownItem>
             <DropdownItem divider />
-            <DropdownItem href="/login">Sign in</DropdownItem>
+            <DropdownItem onClick={() => navigate("/login")}>Sign in</DropdownItem>
           </DropdownMenu>
       </Dropdown>
     </Nav>

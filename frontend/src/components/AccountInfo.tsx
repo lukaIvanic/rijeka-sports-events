@@ -35,7 +35,7 @@ const AccountInfo: FC<aiProps> = ({ userDetails, getLeague }) => {
             <h5 className="text-muted">Profile league:</h5>
             <p className="mb-3">{leagueName}</p>
           </>}
-          <Link to="/formular">
+          <Link to="/dashboard/formular">
             <Button variant="secondary">Edit profile</Button>
           </Link>
         </Col>
