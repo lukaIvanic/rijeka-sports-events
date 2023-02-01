@@ -34,9 +34,9 @@ const ShowResultOfTheGame: React.FC<Props> = ({ result, game, id, homeClub, away
   return (
     <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
       <div className="d-flex justify-content-center align-items-center">
-      <img src={game.clubs[0].profilePicture === "NPP" ? logoUrl : game.clubs[0].profilePicture} className="mr-3" style={{ width: '50px', height: '50px', objectFit: 'contain' }} />
-      <p className="text-center">{homeClub} {result} {awayClub}</p>
-      <img src={game.clubs[1].profilePicture === "NPP" ? logoUrl : game.clubs[1].profilePicture} className="ml-3" style={{ width: '50px', height: '50px', objectFit: 'contain' }} />
+      <img src={game.clubs[0].profilePicture === "NPP" ? logoUrl : game.clubs[0].profilePicture} className="mr-2" style={{ width: '55px', height: '55px', objectFit: 'contain' }} />
+      <p className="text-center" style={{fontSize: "medium", fontWeight: "bold"}}>{homeClub} {result} {awayClub}</p>
+      <img src={game.clubs[1].profilePicture === "NPP" ? logoUrl : game.clubs[1].profilePicture} className="ml-2" style={{ width: '55px', height: '55px', objectFit: 'contain' }} />
     </div>
 
 

@@ -6,7 +6,7 @@ const logoUrl = "../logo.jpg"
 
 const NavBar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light navbar-expand-sm" style={{ height: '8vh', backgroundColor: '#D9FFD8' }}>
+    <nav className="navbar navbar-expand-lg navbar-light navbar-expand-sm" style={{ height: '8vh', backgroundColor: '#A6E3E9' }}>
       {/* Add the logo picture on the left side */}
       <div className="logo-container">
         {/* create anchot that has href "/" */}
