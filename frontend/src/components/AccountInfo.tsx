@@ -37,8 +37,8 @@ const AccountInfo: FC<aiProps> = ({ userDetails, getLeague }) => {
         </Link>
       </div>
       <div>
-        <Col>
-          <img src={profilePicture} alt="logo" className="img-fluid mb-3"  style={{ width: "50%" }}/>
+        <Col style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+          <img src={profilePicture} alt="logo" className="img-thumbnail mb-3"  style={{ width: "50%", maxWidth: "500px" }}/>
           {userDetails && <>
             <h5 className="text-muted">User name:</h5>
             <p className="mb-3">{userDetails.username}</p>
