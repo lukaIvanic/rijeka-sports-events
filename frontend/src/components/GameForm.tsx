@@ -85,7 +85,7 @@ const GameForm: React.FC<Props> = ({ leagues, clubsFromSport = [], getAllClubsUs
     console.log(answer)
     if (answer.error) {
       toast.error(answer.error.exception?.code === "ECONNABORTED" ? "Something went wrong. Retry Connection" : "Credentials incorrect")
-    }else{
+    } else {
       toast.info(`Game between ${team1} and ${team2} created`)
       navigate("/")
     }
@@ -136,7 +136,7 @@ const GameForm: React.FC<Props> = ({ leagues, clubsFromSport = [], getAllClubsUs
             <option value="default" selected disabled hidden>Choose sport</option>
             <option value="nogomet">nogomet</option>
             <option value="rukomet">rukomet</option>
-            <option value="košarka">košarka</option>
+            <option value="kosarka">košarka</option>
             <option value="vaterpolo">vaterpolo</option>
             <option value="odbojka">odbojka</option>
           </select>

@@ -68,6 +68,8 @@ const RegisterUserForm: FC<rufProps> = ({ getAllLeagues, leagues, register }) =>
     console.log(answer)
     if (answer.error) {
       toast.error(answer.error.exception?.code === "ECONNABORTED" ? "Something went wrong. Retry Connection" : "Credentials incorrect")
+    } else {
+      toast.success("Account created")
     }
   };
 
@@ -82,13 +84,6 @@ const RegisterUserForm: FC<rufProps> = ({ getAllLeagues, leagues, register }) =>
 
   return (
     <div className="d-flex justify-content-center align-items-center position-relative" style={{ height: '75vh' }}>
-      <div className="link-top-left">
-        <Link to="/" className="position-absolute" style={{ top: 10, left: 10 }}>
-          <Button variant="secondary">
-            X
-          </Button>
-        </Link>
-      </div>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="email">Email</label>
@@ -126,7 +121,10 @@ const RegisterUserForm: FC<rufProps> = ({ getAllLeagues, leagues, register }) =>
             <label htmlFor="league">Select league</label>
             <select id="league" className="form-control" defaultValue={"nogomet"} onChange={handleLeagueChange}>
               <option value="default" disabled hidden>Choose league</option>
-              {leagues.map((l: any) => <option key={l.name} value={l.name}>{l.name}</option>)}
+              {leagues.map((l: any) => {
+                if (!l.includes("FRIENDLY"))
+                  return <option key={l.name} value={l.name}>{l.name}</option>
+              })}
             </select>
           </div>
         </>}

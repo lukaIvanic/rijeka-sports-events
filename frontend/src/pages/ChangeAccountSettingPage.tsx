@@ -8,7 +8,7 @@ const ChangeAccountSettingPage = () => {
   return (
     <div>
         <NavBar/>
-        <UnderBarForSports/>
+        {/* <UnderBarForSports/> */}
         <ProfileForm/>
         <BottomOfThePage/>
     </div>

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Nav, Navbar, NavItem, NavLink } from 'reactstrap';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { Link, useNavigate } from 'react-router-dom';
+import { logout } from '../utils/logout';
 
 function MenuDropDown() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -15,7 +16,7 @@ function MenuDropDown() {
             <DropdownItem onClick={()=>navigate("/info")}>Account settings</DropdownItem>
             <DropdownItem onClick={()=>navigate("/addEvent")}>Add event</DropdownItem>
             <DropdownItem divider />
-            <DropdownItem onClick={() => navigate("/login")}>Sign in</DropdownItem>
+            <DropdownItem onClick={() =>logout()}>Sign Out</DropdownItem>
           </DropdownMenu>
       </Dropdown>
     </Nav>

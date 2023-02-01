@@ -34,6 +34,7 @@ const Results:FC<resultProps> = ({activeGame}) => {
           firstTeamGoals={firstTeamGoals[0]}
           secondTeamGoals={secondTeamGoals[1]}
           result={activeGame.result}
+          game={activeGame}
           onSave={(editedFirstTeamGoals, editedSecondTeamGoals) => handleSave(0, editedFirstTeamGoals, editedSecondTeamGoals)}
         />}
         

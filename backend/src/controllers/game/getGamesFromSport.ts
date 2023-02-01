@@ -5,7 +5,7 @@ import dayjs from "dayjs"
 const getGamesFromSport = async (req: Request<{ sport: string}, {}, {}, {}>, res: Response) => {
     const { sport } = req.params
     try {
-        if (!["nogomet", "rukomet", "košarka", "vaterpolo", "odbojka"].includes(sport)) {
+        if (!["nogomet", "rukomet", "kosarka", "vaterpolo", "odbojka"].includes(sport)) {
             return res.status(400).send({ message: "Invalid sport selected." })
         }
         // console.log(timestamp)

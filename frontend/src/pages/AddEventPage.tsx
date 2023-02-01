@@ -9,7 +9,7 @@ const AddEventPage = () => {
   return (
     <div>
         <NavBar/>
-        <UnderBarForSports/>
+        {/* <UnderBarForSports/> */}
         <GameForm/>
         <BottomOfThePage/>
     </div>

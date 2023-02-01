@@ -10,7 +10,7 @@ const AddLeaguePage = () => {
   return (
     <div>
         <NavBar />
-        <UnderBarForSports/>
+        {/* <UnderBarForSports/> */}
         <AddLeague />
         <BottomOfThePage />
     </div>

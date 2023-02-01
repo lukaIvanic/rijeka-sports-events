@@ -38,13 +38,6 @@ const LoginForm:FC<lfProps> = ({login}) => {
 
   return (
     <div className="d-flex justify-content-center align-items-center position-relative" style={{ height: '75vh' }}>
-      <div className="link-top-left">
-        <Link to="/" className="position-absolute" style={{ top: 10, left: 10 }}>
-          <Button variant="secondary">
-            X
-          </Button>
-        </Link>
-      </div>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="email">Email/Username</label>

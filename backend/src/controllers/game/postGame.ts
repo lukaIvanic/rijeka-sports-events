@@ -39,10 +39,10 @@ const postGame = async (req: Request<{}, {}, { time: Date, clubs: string[], spor
             return res.status(400).send({ message: "Sport is not from that league." })
         }
 
-        if (club1.league.toString() !== club2.league.toString() && leagueBase.name !== "FRIENDLY") {
+        if (club1.league.toString() !== club2.league.toString() && !leagueBase.name.includes("FRIENDLY")) {
             return res.status(400).send({ message: "Clubs are not in the same league and the game is not marked as friendly." })
         }
-        if (club1.league.toString() !== leagueBase._id.toString() && leagueBase.name !== "FRIENDLY") {
+        if (club1.league.toString() !== leagueBase._id.toString() && !leagueBase.name.includes("FRIENDLY")) {
             return res.status(400).send({ message: "Club doesnt belong to selected league." })
         }
 

@@ -8,7 +8,7 @@ export const AccountInfoPage = () => {
   return (
 <div>
   <NavBar/>
-  <UnderBarForSports/>
+  {/* <UnderBarForSports/> */}
   <AccountInfo/>
   <BottomOfThePage/>
 </div>

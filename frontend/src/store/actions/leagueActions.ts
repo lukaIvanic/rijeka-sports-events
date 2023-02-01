@@ -9,6 +9,7 @@ export const getLeagueActions = (dispatch: any) => {
     return {
         getAllLeagues: () => dispatch(getAllLeagues()),
         getLeague: (id: string) => dispatch(getLeague(id)),
+        createLeague: (name: string, sport: string, navigate: any) => dispatch(createLeague(name, sport, navigate)),
     }
 }
 
@@ -48,7 +49,7 @@ export const getLeague = (id: string) => {
     }
 }
 
-export const createLeague = (name: any, sport: any) => {
+export const createLeague = (name: string, sport: string, navigate: any) => {
     return async (dispatch: any) => {
         const response = await api.createLeague(name, sport)
         console.log("res", response)
@@ -57,7 +58,8 @@ export const createLeague = (name: any, sport: any) => {
             return {error:response}
         } else {
             //@ts-ignore
-            const league = response.data           
+            const league = response.data
+            navigate('/register')
             return {league}
         }
     }

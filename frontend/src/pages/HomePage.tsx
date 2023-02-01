@@ -12,9 +12,10 @@ type hpProps = {
   setUserDetails?: any;
   games?: any[];
   getGamesFromSport?: any;
+  userDetails?: any;
 }
 
-const HomePage: FC<hpProps> = ({setUserDetails, games, getGamesFromSport}) => {
+const HomePage: FC<hpProps> = ({setUserDetails, games, getGamesFromSport, userDetails}) => {
   const [selectedSport, setSelectedSport] = useState("nogomet")
   const [date, setDate] = useState(new Date());
 
@@ -29,10 +30,11 @@ const HomePage: FC<hpProps> = ({setUserDetails, games, getGamesFromSport}) => {
 }
 
 //@ts-ignore
-const mapStoreStateToProps = ({league, game})=>{
+const mapStoreStateToProps = ({league, game, auth})=>{
   return {
     ...league,
-    ...game
+    ...game,
+    ...auth
   }
 }
 

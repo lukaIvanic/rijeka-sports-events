@@ -62,6 +62,7 @@ const ProfileForm: FC<profileFormProps> = ({ userDetails, leagues, updateProfile
       if (!leagues.find((l: any) => l._id === userDetails.league)) return
       setLeague(leagues.find((l: any) => l._id === userDetails.league).name)
       setProfileName(userDetails.username)
+      setPreviewUrl(userDetails.profilePicture === "NPP" ? "" : userDetails.profilePicture)
     }
   }, [userDetails, leagues])
 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {Link, Routes, Route, useNavigate} from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Button } from 'reactstrap';
-import { createLeague } from '../store/actions/leagueActions';
+import { createLeague, getLeagueActions } from '../store/actions/leagueActions';
 
 type alProps = {
   createLeague?: any;
@@ -23,12 +23,11 @@ const AddLeague:FC<alProps> = ({createLeague}) => {
             sport: sport
         }
         console.log(leagueDetails)
-        //const answer = await createLeague(leagueDetails, navigate)
-        //console.log(answer)
-        //if (answer.error){  
-        //    toast.error(answer.error)
-        //}
-        navigate('/register');
+        const answer = await createLeague(name, sport, navigate)
+        console.log(answer)
+        if (answer.error){  
+           toast.error(answer.error)
+        }
     };
 
     const handleNameChange = (e: any) => {
@@ -77,7 +76,7 @@ const AddLeague:FC<alProps> = ({createLeague}) => {
 
 const mapActionsToProps = (dispatch: any) => {
   return {
-      createLeague: (leagueDetails: any, navigate: any) => dispatch(createLeague(leagueDetails, navigate))
+      ...getLeagueActions(dispatch)
   }
 }
 

@@ -6,8 +6,6 @@ import jwt from 'jsonwebtoken'
 const patchUpdate = async (req: Request<{ id: string }, {}, { league: string, name: string }, {}>, res: Response) => {
     try {
         let { league, name } = req.body
-       
-        console.log(name, league)
 
         if (!league || !name) return res.status(400).send({ message: "League and name need to be defined." })
 
@@ -24,8 +22,6 @@ const patchUpdate = async (req: Request<{ id: string }, {}, { league: string, na
         const newProfile: IProfile | null = await Profile.findByIdAndUpdate(req.params.id, { league: leagueExists._id, username: name }, { new: true })
         if (!newProfile) return res.status(400).send({ message: 'Club not found.' })
 
-        console.log(newProfile)
-
         const token = jwt.sign({
             userId: profile._id,
             mail: newProfile.mail,
@@ -37,7 +33,7 @@ const patchUpdate = async (req: Request<{ id: string }, {}, { league: string, na
         }, process.env.TOKEN_KEY as string, { expiresIn: '30d' })
 
 
-        res.status(204).json({
+        res.status(201).json({
             mail: newProfile.mail,
             token,
             type: newProfile.type,
