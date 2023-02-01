@@ -16,8 +16,11 @@ const patchUpdate = async (req: Request<{ id: string }, {}, { league: string, na
         const sameNameProfile = await Profile.exists({ username: name })
         if (sameNameProfile && profile.username !== name) return res.status(409).send({ message: 'Club with that name already exists.' })
 
-        const leagueExists = await League.exists({ name: league })
+        const leagueExists = await League.findOne({ name: league })
         if (!leagueExists) return res.status(400).send({ message: "League doesnt exist." })
+
+        if (leagueExists.sport !== profile.sport && profile.type === "CLUB")
+            return res.status(400).send({ message: "Club can't change sport." })
 
 
         const newProfile: IProfile | null = await Profile.findByIdAndUpdate(req.params.id, { league: leagueExists._id, username: name }, { new: true })

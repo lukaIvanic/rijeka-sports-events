@@ -67,7 +67,7 @@ const RegisterUserForm: FC<rufProps> = ({ getAllLeagues, leagues, register }) =>
     const answer = await register(userDetails, navigate)
     console.log(answer)
     if (answer.error) {
-      toast.error(answer.error.exception?.code === "ECONNABORTED" ? "Something went wrong. Retry Connection" : "Credentials incorrect")
+      toast.error(answer.error.exception?.code === "ECONNABORTED" ? "Something went wrong. Retry Connection" : answer.error.exception.response.data.message)
     } else {
       toast.success("Account created")
     }

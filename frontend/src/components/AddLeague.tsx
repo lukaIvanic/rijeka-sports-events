@@ -24,9 +24,9 @@ const AddLeague:FC<alProps> = ({createLeague}) => {
         }
         console.log(leagueDetails)
         const answer = await createLeague(name, sport, navigate)
-        console.log(answer)
+        console.log("nd",answer)
         if (answer.error){  
-           toast.error(answer.error)
+           toast.error(answer.error.exception?.code === "ECONNABORTED" ? "Something went wrong. Retry Connection" : answer.error.exception.response.data.message)
         }
     };
 

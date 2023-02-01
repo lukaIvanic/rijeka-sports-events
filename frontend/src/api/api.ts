@@ -97,9 +97,9 @@ export const getLeague = async (id: string) => {
     }
 }
 
-export function createLeague(name: string, sport: string) {
+export async function createLeague(name: string, sport: string) {
     try {
-        return apiClient.post('/api/league/create', { name, sport })
+        return await apiClient.post('/api/league/create', { name, sport })
     } catch (exception) {
         return {
             error: true,
@@ -108,9 +108,9 @@ export function createLeague(name: string, sport: string) {
     }
 }
 
-export function createGame(game: any) {
+export async function createGame(game: any) {
     try {
-        return apiClient.post('/api/game/create', game)
+        return await apiClient.post('/api/game/create', game)
     } catch (exception) {
         return {
             error: true,
@@ -119,9 +119,9 @@ export function createGame(game: any) {
     }
 }
 
-export function finishGame(id: string, isFinished: boolean) {
+export async function finishGame(id: string, isFinished: boolean) {
     try {
-        return apiClient.patch('/api/game/finish/'+id, {isFinished})
+        return await apiClient.patch('/api/game/finish/'+id, {isFinished})
     } catch (exception) {
         return {
             error: true,
@@ -130,9 +130,9 @@ export function finishGame(id: string, isFinished: boolean) {
     }
 }
 
-export function updateGame(id: string, result: string) {
+export async function updateGame(id: string, result: string) {
     try {
-        return apiClient.patch('/api/game/update/whole/'+id, {result})
+        return await apiClient.patch('/api/game/update/whole/'+id, {result})
     } catch (exception) {
         return {
             error: true,
@@ -141,9 +141,9 @@ export function updateGame(id: string, result: string) {
     }
 }
 
-export function updateAccount(id: string, name: string, league: string) {
+export async function updateAccount(id: string, name: string, league: string) {
     try {
-        return apiClient.patch('/api/users/update/'+id, {name, league})
+        return await apiClient.patch('/api/users/update/'+id, {name, league})
     } catch (exception) {
         return {
             error: true,
@@ -152,9 +152,9 @@ export function updateAccount(id: string, name: string, league: string) {
     }
 }
 
-export function updateAccountProfilePicture(id: string, image: any) {
+export async function updateAccountProfilePicture(id: string, image: any) {
     try {
-        return apiClient.patch('/api/users/update/picture/'+id, {profilePicture: image})
+        return await apiClient.patch('/api/users/update/picture/'+id, {profilePicture: image})
     } catch (exception) {
         return {
             error: true,

@@ -42,7 +42,7 @@ const ShowResultOfTheGame: React.FC<Props> = ({ result, finishGame, game, id, ho
   const finish = async () => {
     const answer = await finishGame(id, true)
     if (answer.error) {
-      toast.error(answer.error.exception?.code === "ECONNABORTED" ? "Something went wrong. Retry Connection" : "Credentials incorrect")
+      toast.error(answer.error.exception?.code === "ECONNABORTED" ? "Something went wrong. Retry Connection" : answer.error.exception.response.data.message)
     } else {
       toast.success("Game marked as finished.")
       toggle()

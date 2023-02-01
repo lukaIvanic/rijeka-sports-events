@@ -84,7 +84,7 @@ const GameForm: React.FC<Props> = ({ leagues, clubsFromSport = [], getAllClubsUs
     const answer = await createGame(gameDetails);
     console.log(answer)
     if (answer.error) {
-      toast.error(answer.error.exception?.code === "ECONNABORTED" ? "Something went wrong. Retry Connection" : "Credentials incorrect")
+      toast.error(answer.error.exception?.code === "ECONNABORTED" ? "Something went wrong. Retry Connection" : answer.error.exception.response.data.message)
     } else {
       toast.info(`Game between ${team1} and ${team2} created`)
       navigate("/")

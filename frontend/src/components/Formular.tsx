@@ -41,7 +41,7 @@ const ProfileForm: FC<profileFormProps> = ({ userDetails, leagues, updateProfile
       const answerPP = await updateProfilePicture(userDetails._id, uploaded_image)
       if (answerPP.error) {
         console.log(answerPP)
-        return toast.error("something went wrong")
+        return toast.error(answerPP.error.exception?.code === "ECONNABORTED" ? "Something went wrong. Retry Connection" : answerPP.error.exception.response.data.message)
       }
     });
     reader.readAsDataURL(file);
@@ -82,7 +82,7 @@ const ProfileForm: FC<profileFormProps> = ({ userDetails, leagues, updateProfile
     const answer = await updateProfile(userDetails._id, body, navigate);
     console.log("answer", answer)
     if (answer.error) {
-      toast.error(answer.error.exception?.code === "ECONNABORTED" ? "Something went wrong. Retry Connection" : "Credentials incorrect")
+      toast.error(answer.error.exception?.code === "ECONNABORTED" ? "Something went wrong. Retry Connection" : answer.error.exception.response.data.message)
     }
   }
 
@@ -106,7 +106,7 @@ const ProfileForm: FC<profileFormProps> = ({ userDetails, leagues, updateProfile
         <FormGroup>
           <Label for="clubName">Profile Name</Label>
           <Input disabled={userDetails && userDetails.type && userDetails.type === "USER"} type="text" name="clubName" id="clubName" value={profileName} onChange={handleNameChange} />
-          <p style={{ fontSize: "12px" }}>*users cant change their username</p>
+          {userDetails.type === "USER" && <p style={{ fontSize: "12px" }}>*users cant change their username</p>}
         </FormGroup>
         {userDetails && userDetails.type && userDetails.type === "CLUB" &&
           <>
@@ -115,7 +115,10 @@ const ProfileForm: FC<profileFormProps> = ({ userDetails, leagues, updateProfile
                 <label htmlFor="league">Select league</label>
                 <select id="league" className="form-control" value={league} onChange={handleLeagueChange}>
                   <option value="default" disabled hidden>Choose league</option>
-                  {leagues.map((l: any) => <option key={l.name} value={l.name}>{l.name}</option>)}
+                  {leagues && leagues.map((l: any) => {
+                    if (l && l.name && !l.name.includes("FRIENDLY"))
+                      return <option key={l.name} value={l.name}>{l.name}</option>
+                  })}
                 </select>
               </div>
             </FormGroup>
