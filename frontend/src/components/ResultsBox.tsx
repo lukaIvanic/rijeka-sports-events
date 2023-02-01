@@ -25,7 +25,7 @@ const Results:FC<resultProps> = ({activeGame}) => {
 
   return (
     <Card style={{ marginBottom: '200px' }}>
-      <CardHeader className="fixed-height-card-header" style={{backgroundColor: "#A6E3E9"}}>Results</CardHeader>
+      <CardHeader className="fixed-height-card-header" style={{backgroundColor: "#A6E3E9"}}>Rezultati</CardHeader>
       <CardBody style={{backgroundColor: "#CBF1F5"}}>
       {!activeGame &&  <h4 style={{textAlign: "center"}}>Nije odabrana nijedna utakmica</h4> }
         {activeGame && <ShowResultOfTheGame

@@ -19,8 +19,8 @@ const ShowGame: React.FC<Props> = ({ homeClub, awayClub, timeOfTheGame, setActiv
             <p className="text-center" style={{fontSize: "medium", fontWeight: "bold"}}>{homeClub} {" - "} {awayClub}</p>
             <img src={game.clubs[1].profilePicture === "NPP" ? logoUrl : game.clubs[1].profilePicture} className="ml-3" style={{ width: '55px', height: '55px', objectFit: 'contain' }} />
         </div>
-        <p className="text-center mb-3" style={{fontSize: "large", fontWeight: "bold"}}>{game.isFinished ? "Finished" : gameDate}</p>
-        <p className="text-center mb-3" style={{fontSize: "large", fontWeight: "bold"}}>{game.isFinished ? "Finished" : timeOfTheGame}</p>
+        {!game.isFinished && <p className="text-center mb-3" style={{fontSize: "large", fontWeight: "bold"}}>{game.isFinished ? "Završilo" : gameDate}</p>}
+        <p className="text-center mb-3" style={{fontSize: "large", fontWeight: "bold"}}>{game.isFinished ? "Završilo" : timeOfTheGame}</p>
     </div>
   )
 }

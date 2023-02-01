@@ -77,9 +77,9 @@ const ShowResultOfTheGame: React.FC<Props> = ({ result, finishGame, game, id, ho
           </Form>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={handleSave}>Save</Button>
-          <Button color="secondary" onClick={toggle}>Cancel</Button>
-          <Button color="secondary" onClick={finish}>Finish Game</Button>
+          <Button color="primary" onClick={handleSave}>Spremi</Button>
+          <Button color="secondary" onClick={toggle}>Odbij</Button>
+          <Button color="secondary" onClick={finish}>Završi utakmicu</Button>
         </ModalFooter>
       </Modal>
     </div>
