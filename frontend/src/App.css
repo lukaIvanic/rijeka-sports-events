@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+.nav-item > li > p:focus{
+  background-color: #007bff;
+}
