@@ -81,11 +81,15 @@ const RegisterUserForm: FC<rufProps> = ({ getAllLeagues, leagues, register }) =>
     getAllLeagues()
   }, [])
 
+  useEffect(() => {
+    console.log(leagues)
+  }, [leagues])
+
 
   return (
-    <div className="d-flex justify-content-center align-items-center position-relative" style={{ height: '75vh' }}>
+    <div className="d-flex justify-content-center align-items-center position-relative flex-column" style={{ height: '92vh' }}>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div className="form-group spaceIt">
           <label htmlFor="email">Email</label>
           <input type="email" className="form-control" id="email" value={mail} onChange={handleMailChange} />
         </div>
@@ -111,18 +115,18 @@ const RegisterUserForm: FC<rufProps> = ({ getAllLeagues, leagues, register }) =>
             <select id="sport" className="form-control" value={sport} onChange={handleSportChange}>
               <option value="default" disabled hidden>Choose sport</option>
               <option value="nogomet">Nogomet</option>
-              <option value="rukomet">rukomet</option>
-              <option value="kosarka">kosarka</option>
-              <option value="vaterpolo">vaterpolo</option>
-              <option value="odbojka">odbojka</option>
+              <option value="rukomet">Rukomet</option>
+              <option value="kosarka">Kosarka</option>
+              <option value="vaterpolo">Vaterpolo</option>
+              <option value="odbojka">Odbojka</option>
             </select>
           </div>
           <div className="form-group">
             <label htmlFor="league">Select league</label>
             <select id="league" className="form-control" defaultValue={"nogomet"} onChange={handleLeagueChange}>
               <option value="default" disabled hidden>Choose league</option>
-              {leagues.map((l: any) => {
-                if (!l.includes("FRIENDLY"))
+              {leagues && leagues.map((l: any) => {
+                if (l && l.name && !l.name.includes("FRIENDLY"))
                   return <option key={l.name} value={l.name}>{l.name}</option>
               })}
             </select>
@@ -135,6 +139,9 @@ const RegisterUserForm: FC<rufProps> = ({ getAllLeagues, leagues, register }) =>
           Add new league
         </button>
       </form>
+      <div className="form-group mt-5">
+        <p onClick={() => navigate("/login")} style={{ color: "black", cursor: "pointer", textDecoration: "underline" }}>Already have an account? Log in</p>
+      </div>
     </div>
   )
 }

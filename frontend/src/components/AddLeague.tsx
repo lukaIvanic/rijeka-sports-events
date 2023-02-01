@@ -42,7 +42,7 @@ const AddLeague:FC<alProps> = ({createLeague}) => {
   return (
     <div className="d-flex justify-content-center align-items-center position-relative" style={{ height: '75vh' }}>
       <div className="link-top-left">
-          <Link to="/" className="position-absolute" style={{ top: 10, left: 10 }}>
+          <Link to="/register" className="position-absolute" style={{ top: 10, left: 10 }}>
             <Button variant="secondary">
               X
             </Button>
@@ -57,11 +57,11 @@ const AddLeague:FC<alProps> = ({createLeague}) => {
             <label htmlFor="sport" >Select sport</label>
             <select id="sport" className="form-control" value={sport} onChange={handleSportChange}>
                 <option value="default" selected disabled hidden>Choose sport</option>
-                <option value="nogomet">nogomet</option>
-                <option value="rukomet">rukomet</option>
-                <option value="kosarka">kosarka</option>
-                <option value="vaterpolo">vaterpolo</option>
-                <option value="odbojka">odbojka</option>
+                <option value="nogomet">Nogomet</option>
+                <option value="rukomet">Rukomet</option>
+                <option value="kosarka">Kosarka</option>
+                <option value="vaterpolo">Vaterpolo</option>
+                <option value="odbojka">Odbojka</option>
             </select>
         </div>
         <button type="submit" className="btn btn-secondary">

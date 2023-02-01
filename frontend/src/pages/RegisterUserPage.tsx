@@ -9,10 +9,10 @@ import UnderBarForSports from '../components/UnderBarForSports';
 const RegisterUserPage = () => {
   return (
     <div>
-        <NavBar />
-        <UnderBarForSports/>
+        <NavBar visibleMenu={false}/>
+        {/* <UnderBarForSports/> */}
         <RegisterUserForm />
-        <BottomOfThePage />
+        {/* <BottomOfThePage /> */}
     </div>
 
   );

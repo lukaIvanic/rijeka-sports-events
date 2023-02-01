@@ -66,7 +66,7 @@ const ShowResultOfTheGame: React.FC<Props> = ({ result, finishGame, game, id, ho
         <ModalHeader toggle={toggle}>Edit Result</ModalHeader>
         <ModalBody>
           <Form>
-            <FormGroup className="d-flex salign-items-center">
+            <FormGroup className="d-flex align-items-center">
               <img src={game.clubs[0].profilePicture === "NPP" ? logoUrl : game.clubs[0].profilePicture} style={{ width: '50px', height: '50px', objectFit: 'contain' }} />
               <Label for="firstTeamGoals" className="mr-2 ml-2">{homeClub}</Label>
               <Input type="number" id="firstTeamGoals" value={editedFirstTeamGoals} onChange={(e) => setEditedFirstTeamGoals(Number(e.target.value))} className="w-25 mr-2" />

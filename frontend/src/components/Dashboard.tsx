@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route, BrowserRouter as Router, Link, Outlet } from "react-router-dom";
 import HomePage from '../pages/HomePage';
 import LogInPage from '../pages/LogInPage';
@@ -24,6 +24,8 @@ type dashboardProps = {
 }
 
 const Dashboard: React.FC<dashboardProps> = ({setUserDetails, getAllLeagues, getAllClubsUsingSport}) => {
+  const [selectedSport, setSelectedSport] = useState("nogomet")
+
   useEffect(() => {
     const userDetails = localStorage.getItem('user')
     if (!userDetails) {
@@ -43,7 +45,7 @@ const Dashboard: React.FC<dashboardProps> = ({setUserDetails, getAllLeagues, get
             <Route path="/formular" element={<ChangeAccountSettingPage />} />
             <Route path="/info" element={<AccountInfoPage />} />
             <Route path="/addEvent" element={<AddEventPage />} />
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<HomePage selectedSport={selectedSport} setSelectedSport={setSelectedSport} />} />
         </Routes>
        </div>
   );

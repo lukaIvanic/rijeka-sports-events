@@ -1,10 +1,15 @@
-import { useState } from 'react'
+import { FC, useState } from 'react'
 import { Nav, Navbar, NavItem, NavLink } from 'reactstrap';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../utils/logout';
+import { connect } from 'react-redux';
 
-function MenuDropDown() {
+type mdProps = {
+  userDetails?: any;
+}
+
+const MenuDropDown: FC<mdProps> = ({userDetails}) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const navigate = useNavigate()
 
@@ -14,7 +19,7 @@ function MenuDropDown() {
         <DropdownToggle nav>Menu</DropdownToggle>
         <DropdownMenu>
             <DropdownItem onClick={()=>navigate("/info")}>Account settings</DropdownItem>
-            <DropdownItem onClick={()=>navigate("/addEvent")}>Add event</DropdownItem>
+            {userDetails && userDetails.type && userDetails.type === "CLUB" && <DropdownItem onClick={()=>navigate("/addEvent")}>Add event</DropdownItem>}
             <DropdownItem divider />
             <DropdownItem onClick={() =>logout()}>Sign Out</DropdownItem>
           </DropdownMenu>
@@ -23,4 +28,11 @@ function MenuDropDown() {
   )
 }
 
-export default MenuDropDown
+//@ts-ignore
+const mapStoreStateToProps = ({auth}) => {
+  return {
+    ...auth
+  }
+}
+
+export default connect(mapStoreStateToProps)(MenuDropDown)

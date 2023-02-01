@@ -13,10 +13,12 @@ type hpProps = {
   games?: any[];
   getGamesFromSport?: any;
   userDetails?: any;
+  selectedSport: string;
+  setSelectedSport: any;
 }
 
-const HomePage: FC<hpProps> = ({setUserDetails, games, getGamesFromSport, userDetails}) => {
-  const [selectedSport, setSelectedSport] = useState("nogomet")
+const HomePage: FC<hpProps> = ({setUserDetails, games, getGamesFromSport, userDetails, selectedSport, setSelectedSport}) => {
+  
   const [date, setDate] = useState(new Date());
 
   return (

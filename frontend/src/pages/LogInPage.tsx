@@ -9,10 +9,10 @@ import UnderBarForSports from '../components/UnderBarForSports';
 const LogInPage = () => {
   return (
     <div>
-        <NavBar />
-        <UnderBarForSports/>
+        <NavBar visibleMenu={false}/>
+        {/* <UnderBarForSports/> */}
         <LoginForm />
-        <BottomOfThePage />
+        {/* <BottomOfThePage /> */}
     </div>
 
   );

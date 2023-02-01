@@ -66,6 +66,13 @@ const ProfileForm: FC<profileFormProps> = ({ userDetails, leagues, updateProfile
     }
   }, [userDetails, leagues])
 
+  useEffect(() => {
+    if (userDetails.type === "USER") {
+      setPreviewUrl(userDetails.profilePicture === "NPP" ? "" : userDetails.profilePicture)
+      setProfileName(userDetails.username)
+    }
+  }, [userDetails])
+
   const handleSubmit = async () => {
     const body = {
       league,
@@ -88,31 +95,36 @@ const ProfileForm: FC<profileFormProps> = ({ userDetails, leagues, updateProfile
           </Button>
         </Link>
       </div>
-        <Form style={{width: "40%"}}>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-              {previewUrl && (<img src={previewUrl} style={{ width: "30%", height: "30%", minWidth: "100px",objectFit: "scale-down" }}/>)}
+      <Form style={{ width: "40%" }}>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          {previewUrl && (<img src={previewUrl} style={{ width: "30%", height: "30%", minWidth: "100px", objectFit: "scale-down" }} />)}
+        </div>
+        <FormGroup>
+          <Label for="profilePhoto">Profile Photo</Label>
+          <input onChange={handleFileChoosing} type="file" name="image" id="imageUpload" accept="image/jpeg, image/png, image/jpg" />
+        </FormGroup>
+        <FormGroup>
+          <Label for="clubName">Profile Name</Label>
+          <Input disabled={userDetails && userDetails.type && userDetails.type === "USER"} type="text" name="clubName" id="clubName" value={profileName} onChange={handleNameChange} />
+          <p style={{ fontSize: "12px" }}>*users cant change their username</p>
+        </FormGroup>
+        {userDetails && userDetails.type && userDetails.type === "CLUB" &&
+          <>
+            <FormGroup>
+              <div className="form-group">
+                <label htmlFor="league">Select league</label>
+                <select id="league" className="form-control" value={league} onChange={handleLeagueChange}>
+                  <option value="default" disabled hidden>Choose league</option>
+                  {leagues.map((l: any) => <option key={l.name} value={l.name}>{l.name}</option>)}
+                </select>
+              </div>
+            </FormGroup>
+            <div className="d-flex justify-content-center">
+              <Button onClick={handleSubmit}>Save Changes</Button>
             </div>
-          <FormGroup>
-            <Label for="profilePhoto">Profile Photo</Label>
-            <input onChange={handleFileChoosing} type="file" name="image" id="imageUpload" accept="image/jpeg, image/png, image/jpg" />
-          </FormGroup>
-          <FormGroup>
-            <Label for="clubName">Club Name</Label>
-            <Input type="text" name="clubName" id="clubName" value={profileName} onChange={handleNameChange} />
-          </FormGroup>
-          <FormGroup>
-            <div className="form-group">
-              <label htmlFor="league">Select league</label>
-              <select id="league" className="form-control" value={league} onChange={handleLeagueChange}>
-                <option value="default" disabled hidden>Choose league</option>
-                {leagues.map((l: any) => <option key={l.name} value={l.name}>{l.name}</option>)}
-              </select>
-            </div>
-          </FormGroup>
-          <div className="d-flex justify-content-center">
-            <Button onClick={handleSubmit}>Save Changes</Button>
-          </div>
-        </Form>
+          </>
+        }
+      </Form>
     </div>
   );
 };

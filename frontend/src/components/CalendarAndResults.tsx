@@ -11,7 +11,7 @@ type cbProps = {
 
 const CalendarAndResults: FC<cbProps> = ({date, setDate, selectedSport}) => {
   const [activeGame, setActiveGame] = useState(null)
-  return <Container fluid style={{ marginTop: '30px' }}>
+  return <Container fluid style={{ marginTop: '30px'}}>
     <Row>
       <Col xs={12} md={8}>
         {/* Calendar box goes here */}

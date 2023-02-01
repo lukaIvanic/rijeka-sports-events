@@ -25,6 +25,12 @@ const AccountInfo: FC<aiProps> = ({ userDetails, getLeague }) => {
     ok()
   }, [userDetails])
 
+  useEffect(() => {
+    if (userDetails.type === "USER") {
+      setProfilePicture(userDetails.profilePicture === "NPP" ? "" : userDetails.profilePicture)
+    }
+  }, [userDetails])
+
   return (
     <div className="d-flex justify-content-center align-items-center position-relative" style={{ height: '75vh' }}>
       <div className="link-top-left">
@@ -36,9 +42,9 @@ const AccountInfo: FC<aiProps> = ({ userDetails, getLeague }) => {
       </div>
       <div>
         <Col style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-          <img src={profilePicture} alt="logo" className="img-thumbnail mb-3"  style={{ width: "50%", maxWidth: "500px" }}/>
+          <img src={profilePicture} alt="logo" className="img-thumbnail mb-3"  style={{ width: "50%", maxWidth: "500px", maxHeight: "400px" }}/>
           {userDetails && <>
-            <h5 className="text-muted">User name:</h5>
+            <h5 className="text-muted">Username:</h5>
             <p className="mb-3">{userDetails.username}</p>
           </>}
           {userDetails && userDetails.type && userDetails.type === "CLUB" && <>

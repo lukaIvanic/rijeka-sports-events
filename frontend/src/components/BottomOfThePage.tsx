@@ -8,7 +8,7 @@ export const BottomOfThePage = () => {
         <div className="container">
             <div className="row">
             <div className="col-12 col-md-4 text-md-center mx-auto">
-                <a onClick={() => navigate("/login")} className="text-secondary">Web Tim</a>
+                <p style={{cursor: "not-allowed"}} className="text-secondary">Web Tim</p>
             </div>
             </div>
         </div>
