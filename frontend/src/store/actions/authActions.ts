@@ -11,6 +11,7 @@ export const getAuthActions = (dispatch: any) => {
         login: (userDetails: any, navigate: any) => dispatch(login(userDetails, navigate)),
         register: (userDetails: any, navigate: any) => dispatch(register(userDetails, navigate)),
         updateProfile: (id: string, body: any, navigate: any) => dispatch(updateProfile(id, body, navigate)),
+        updateProfilePicture: (id: string, image: any) => dispatch(updateProfilePicture(id, image)),
         setUserDetails: (userDetails: any) => dispatch(setUserDetails(userDetails)),
         getAllClubsUsingSport: (sport: string) => dispatch(getAllClubsUsingSport(sport)),
 
@@ -41,6 +42,7 @@ const login = (userDetails: any, navigate: any) => {
             //@ts-ignore
             const userDetails = response.data
             localStorage.setItem('user', JSON.stringify(userDetails))
+            console.log("jupi")
 
             dispatch(setUserDetails(userDetails))
             navigate('/')
@@ -60,6 +62,7 @@ const register = (userDetails: any, navigate: any) => {
             //@ts-ignore
             const userDetails = response.data
             localStorage.setItem('user', JSON.stringify(userDetails))
+            console.log("jupi")
 
             dispatch(setUserDetails(userDetails))
             navigate('/')
@@ -87,8 +90,9 @@ export const getAllClubsUsingSport = (sport: string) => {
 
 export const updateProfile = (id: string, body: any, navigate: any) => {
     return async (dispatch: any) => {
+        console.log("stuff sent", id, body.name, body.league)
         const response = await api.updateAccount(id, body.name, body.league)
-        console.log(response)
+        console.log("response", response)
         //@ts-ignore
         if (response.error) {
             return { error: response }
@@ -99,6 +103,24 @@ export const updateProfile = (id: string, body: any, navigate: any) => {
 
             dispatch(setUserDetails(userDetails))
             navigate('/')
+            return {}
+        }
+    }
+}
+
+export const updateProfilePicture = (id: string, image: any) => {
+    return async (dispatch: any) => {
+        const response = await api.updateAccountProfilePicture(id, image)
+        console.log("response", response)
+        //@ts-ignore
+        if (response.error) {
+            return { error: response }
+        } else {
+            //@ts-ignore
+            const userDetails = response.data
+            localStorage.setItem('user', JSON.stringify(userDetails))
+
+            dispatch(setUserDetails(userDetails))
             return {}
         }
     }

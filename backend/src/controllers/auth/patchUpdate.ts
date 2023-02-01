@@ -1,14 +1,13 @@
 import Profile, { IProfile } from '../../models/ProfileSchema'
 import { Request, Response } from 'express'
 import League from '../../models/LeagueSchema'
+import jwt from 'jsonwebtoken'
 
 const patchUpdate = async (req: Request<{ id: string }, {}, { league: string, name: string }, {}>, res: Response) => {
     try {
         let { league, name } = req.body
-        //@ts-ignore
-        let token: string | undefined = req.body.token || req.query.token || req.headers["authorization"];
-
-        console.log(name)
+       
+        console.log(name, league)
 
         if (!league || !name) return res.status(400).send({ message: "League and name need to be defined." })
 
@@ -25,13 +24,27 @@ const patchUpdate = async (req: Request<{ id: string }, {}, { league: string, na
         const newProfile: IProfile | null = await Profile.findByIdAndUpdate(req.params.id, { league: leagueExists._id, username: name }, { new: true })
         if (!newProfile) return res.status(400).send({ message: 'Club not found.' })
 
-        res.status(201).json({
-            mail: profile.mail,
-            token,
+        console.log(newProfile)
+
+        const token = jwt.sign({
+            userId: profile._id,
+            mail: newProfile.mail,
             type: newProfile.type,
-            username: profile.username,
+            username: newProfile.username,
             sport: newProfile.sport ? newProfile.sport : "",
             league: newProfile.league ? newProfile.league : "",
+            profilePicture: newProfile.profilePicture,
+        }, process.env.TOKEN_KEY as string, { expiresIn: '30d' })
+
+
+        res.status(204).json({
+            mail: newProfile.mail,
+            token,
+            type: newProfile.type,
+            username: newProfile.username,
+            sport: newProfile.sport ? newProfile.sport : "",
+            league: newProfile.league ? newProfile.league : "",
+            profilePicture: newProfile.profilePicture,
             _id: newProfile._id
         },
         )

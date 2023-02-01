@@ -57,6 +57,7 @@ const postRegister = async (req: Request<{}, {}, { username: string, password: s
             type,
             sport: profileBody.sport ? profileBody.sport : "",
             league: profile.league ? profileBody.league : "",
+            profilePicture: profile.profilePicture,
         }, process.env.TOKEN_KEY as string, { expiresIn: '30d' })
 
         res.status(201).json({
@@ -66,6 +67,7 @@ const postRegister = async (req: Request<{}, {}, { username: string, password: s
             username: profile.username,
             sport: profileBody.sport ? profileBody.sport : "",
             league: profile.league ? profileBody.league : "",
+            profilePicture: profile.profilePicture,
             _id: profile._id
         },
         )

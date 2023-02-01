@@ -8,38 +8,56 @@ import { getLeagueActions } from '../store/actions/leagueActions';
 
 type profileFormProps = {
   userDetails?: any;
-  getLeague?: any;
   leagues?: any;
   updateProfile?: any;
+  updateProfilePicture?: any;
 }
 
-const ProfileForm:FC<profileFormProps> = ({userDetails, leagues, updateProfile}) => {
+const ProfileForm: FC<profileFormProps> = ({ userDetails, leagues, updateProfile, updateProfilePicture }) => {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [profileName, setProfileName] = useState("")
   const [league, setLeague] = useState("")
+  const [image, setImage] = useState(null)
   const navigate = useNavigate()
 
-  
+
   const handleLeagueChange = (e: any) => {
     setLeague(e.target.value)
   }
-  
+
   const handleNameChange = (e: any) => {
     setProfileName(e.target.value)
   }
-  
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+  const handleFileChoosing = (e: any) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    
     const reader = new FileReader();
-    reader.onload = (e) => {
-      setPreviewUrl(e.target?.result as string);
-    };
-    reader.readAsDataURL(file);
-  };
+    reader.addEventListener("load", async () => {
+      setPreviewUrl(reader.result as string);
 
-  useEffect(()=> {
+      const uploaded_image = reader.result;
+      //@ts-ignore
+      const answerPP = await updateProfilePicture(userDetails._id, uploaded_image)
+      if (answerPP.error) {
+        console.log(answerPP)
+        return toast.error("something went wrong")
+      }
+    });
+    reader.readAsDataURL(file);
+  }
+
+  // const handleUpload = async () => {
+  //   const answer = await updateProfilePicture(userDetails.id, image)
+  //       if (!answer.error){
+  //           // setTitle('')
+  //           // setDescription('')
+  //           // getAllPosts()
+  //           // toggleAddPostShowing()
+  //       }
+  // }
+
+  useEffect(() => {
     if (userDetails && userDetails.league && userDetails.username) {
       if (!leagues.find((l: any) => l._id === userDetails.league)) return
       setLeague(leagues.find((l: any) => l._id === userDetails.league).name)
@@ -52,13 +70,14 @@ const ProfileForm:FC<profileFormProps> = ({userDetails, leagues, updateProfile})
       league,
       name: profileName
     }
+
     const answer = await updateProfile(userDetails._id, body, navigate);
-    console.log(answer)
+    console.log("answer", answer)
     if (answer.error) {
       toast.error(answer.error.exception?.code === "ECONNABORTED" ? "Something went wrong. Retry Connection" : "Credentials incorrect")
     }
   }
-  
+
   return (
     <div className="d-flex justify-content-center align-items-center position-relative" style={{ height: '75vh' }}>
       <div>
@@ -74,20 +93,20 @@ const ProfileForm:FC<profileFormProps> = ({userDetails, leagues, updateProfile})
             </div>
           <FormGroup>
             <Label for="profilePhoto">Profile Photo</Label>
-            <Input type="file" name="profilePhoto" id="profilePhoto" onChange={handleFileChange} />
+            <input onChange={handleFileChoosing} type="file" name="image" id="imageUpload" accept="image/jpeg, image/png, image/jpg" />
           </FormGroup>
           <FormGroup>
             <Label for="clubName">Club Name</Label>
-            <Input type="text" name="clubName" id="clubName" value={profileName} onChange={handleNameChange}/>
+            <Input type="text" name="clubName" id="clubName" value={profileName} onChange={handleNameChange} />
           </FormGroup>
           <FormGroup>
-          <div className="form-group">
-            <label htmlFor="league">Select league</label>
-            <select id="league" className="form-control" value={league} onChange={handleLeagueChange}>
-              <option value="default" disabled hidden>Choose league</option>
-              {leagues.map((l: any) => <option key={l.name} value={l.name}>{l.name}</option>)}
-            </select>
-          </div>
+            <div className="form-group">
+              <label htmlFor="league">Select league</label>
+              <select id="league" className="form-control" value={league} onChange={handleLeagueChange}>
+                <option value="default" disabled hidden>Choose league</option>
+                {leagues.map((l: any) => <option key={l.name} value={l.name}>{l.name}</option>)}
+              </select>
+            </div>
           </FormGroup>
           <div className="d-flex justify-content-center">
             <Button onClick={handleSubmit}>Save Changes</Button>
@@ -108,8 +127,7 @@ const mapStoreStateToProps = ({ auth, league }) => {
 
 const mapActionsToProps = (dispatch: any) => {
   return {
-    ...getAuthActions(dispatch),
-    ...getLeagueActions(dispatch)
+    ...getAuthActions(dispatch)
   }
 }
 
