@@ -5,6 +5,7 @@ import { Link, Routes, Route, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { getLeagueActions } from "../store/actions/leagueActions"
 import { getAuthActions } from '../store/actions/authActions';
+import { Button } from 'reactstrap';
 
 type rufProps = {
   leagues?: any[];
@@ -80,7 +81,14 @@ const RegisterUserForm: FC<rufProps> = ({ getAllLeagues, leagues, register }) =>
 
 
   return (
-    <div className="d-flex justify-content-center align-items-center" style={{ height: '75vh' }}>
+    <div className="d-flex justify-content-center align-items-center position-relative" style={{ height: '75vh' }}>
+      <div className="link-top-left">
+        <Link to="/" className="position-absolute" style={{ top: 10, left: 10 }}>
+          <Button variant="secondary">
+            X
+          </Button>
+        </Link>
+      </div>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="email">Email</label>

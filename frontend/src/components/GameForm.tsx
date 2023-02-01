@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { getLeagueActions } from '../store/actions/leagueActions';
 import { getAuthActions } from '../store/actions/authActions';
 import { getGameActions } from '../store/actions/gameActions';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 interface Props {
@@ -92,7 +92,14 @@ const GameForm: React.FC<Props> = ({ leagues, clubsFromSport = [], getAllClubsUs
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center" style={{ height: '75vh' }}>
+    <div className="d-flex justify-content-center align-items-center position-relative" style={{ height: '75vh' }}>
+      <div className="link-top-left">
+        <Link to="/" className="position-absolute" style={{ top: 10, left: 10 }}>
+          <Button variant="secondary">
+            X
+          </Button>
+        </Link>
+      </div>
       <Form onSubmit={handleSubmit} >
         <div className="form-group">
           <Label for="date" className="sr-only">

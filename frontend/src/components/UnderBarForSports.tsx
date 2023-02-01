@@ -16,19 +16,19 @@ const UnderBarForSports: FC<ubfsProps> = ({ setSelectedSport }) => {
             <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
                 <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li className="nav-item">
-                        <p onClick={() => setSelectedSport("nogomet")} className="nav-link">Nogomet</p>
+                        <p onClick={() => setSelectedSport("nogomet")} className="nav-link" style={{ cursor: 'default' }}>Nogomet</p>
                     </li>
                     <li className="nav-item">
-                        <p onClick={() => setSelectedSport("rukomet")} className="nav-link">Rukomet</p>
+                        <p onClick={() => setSelectedSport("rukomet")} className="nav-link" style={{ cursor: 'default' }}>Rukomet</p>
                     </li>
                     <li className="nav-item">
-                        <p onClick={() => setSelectedSport("kosarka")} className="nav-link">Kosarka</p>
+                        <p onClick={() => setSelectedSport("kosarka")} className="nav-link" style={{ cursor: 'default' }}>Kosarka</p>
                     </li>
                     <li className="nav-item">
-                        <p onClick={() => setSelectedSport("vaterpolo")} className="nav-link">Vaterpolo</p>
+                        <p onClick={() => setSelectedSport("vaterpolo")} className="nav-link" style={{ cursor: 'default' }}>Vaterpolo</p>
                     </li>
                     <li className="nav-item">
-                        <p onClick={() => setSelectedSport("odbojka")} className="nav-link">Odbojka</p>
+                        <p onClick={() => setSelectedSport("odbojka")} className="nav-link" style={{ cursor: 'default' }}>Odbojka</p>
                     </li>
        
                 </ul>

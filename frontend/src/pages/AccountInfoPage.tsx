@@ -9,9 +9,7 @@ export const AccountInfoPage = () => {
 <div>
   <NavBar/>
   <UnderBarForSports/>
-  <div style={{display: 'flex', height: '75vh', alignItems: 'center', justifyContent: 'center'}}>
-    <AccountInfo/>
-  </div>
+  <AccountInfo/>
   <BottomOfThePage/>
 </div>
   )

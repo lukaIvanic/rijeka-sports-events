@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Form, FormGroup, Label, Input, Button, Row, Col, Container } from 'reactstrap';
 import { getAuthActions } from '../store/actions/authActions';
@@ -79,16 +79,18 @@ const ProfileForm: FC<profileFormProps> = ({ userDetails, leagues, updateProfile
   }
 
   return (
-    <div className="d-flex justify-content-center align-items-center">
-      <Container className="d-flex">
-        <Form style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", height: "75vh" }}>
-          <Container style={{ width: "40%", display: "flex", justifyContent: "center", alignItems: "center", marginBottom: "20px" }}>
-            <Row>
-              <Col >
-                {previewUrl && <img src={previewUrl} style={{ width: "100%" }} />}
-              </Col>
-            </Row>
-          </Container>
+    <div className="d-flex justify-content-center align-items-center position-relative" style={{ height: '75vh' }}>
+      <div>
+        <Link to="/" className="position-absolute" style={{ top: 10, left: 10 }}>
+          <Button variant="secondary">
+            X
+          </Button>
+        </Link>
+      </div>
+        <Form style={{width: "40%"}}>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+              {previewUrl && (<img src={previewUrl} style={{ width: "30%", height: "30%", minWidth: "100px",objectFit: "scale-down" }}/>)}
+            </div>
           <FormGroup>
             <Label for="profilePhoto">Profile Photo</Label>
             <input onChange={handleFileChoosing} type="file" name="image" id="imageUpload" accept="image/jpeg, image/png, image/jpg" />
@@ -106,9 +108,10 @@ const ProfileForm: FC<profileFormProps> = ({ userDetails, leagues, updateProfile
               </select>
             </div>
           </FormGroup>
-          <Button onClick={handleSubmit}>Save Changes</Button>
+          <div className="d-flex justify-content-center">
+            <Button onClick={handleSubmit}>Save Changes</Button>
+          </div>
         </Form>
-      </Container>
     </div>
   );
 };
