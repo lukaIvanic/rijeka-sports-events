@@ -5,10 +5,14 @@ import authRouter from "./routes/AuthRouter"
 import gameRouter from "./routes/GameRouter"
 import leagueRouter from "./routes/LeagueRouter"
 import cors from "cors"
+import {registerSocketServer} from './socket'
+import http from "http"
 
 dotenv.config()
 db()
-const app = express();
+
+const app = express()
+const server = http.createServer(app)
 const PORT: number = 5000;
 
 app.use(cors())
@@ -26,3 +30,4 @@ app.use('/api/league', leagueRouter)
 app.listen(PORT, () => {
   return console.log(`Express is listening at http://localhost:${PORT}`);
 });
+registerSocketServer(server)

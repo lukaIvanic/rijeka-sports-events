@@ -15,6 +15,7 @@ import { connect } from "react-redux";
 import { getAuthActions } from "../store/actions/authActions";
 import { getGameActions } from "../store/actions/gameActions";
 import { getLeagueActions } from "../store/actions/leagueActions";
+import { connectSocket } from '../socketConnection'
 
 type dashboardProps = {
   setUserDetails?: any;
@@ -32,7 +33,7 @@ const Dashboard: React.FC<dashboardProps> = ({setUserDetails, getAllLeagues, get
       getAllLeagues()
       // getAllClubsUsingSport("nogomet")
 
-      // connectSocket()
+      connectSocket()
     }
   }, [])
 

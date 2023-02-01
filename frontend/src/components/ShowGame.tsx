@@ -11,7 +11,6 @@ interface Props {
 
 
 const ShowGame: React.FC<Props> = ({ homeClub, awayClub, timeOfTheGame, setActiveGame, game}) => {
-  console.log(game)
   return (
     <div onClick={()=>setActiveGame(game)} style={{ display: 'flex', cursor: "pointer", flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
         <div className="d-flex">

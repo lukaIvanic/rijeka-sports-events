@@ -37,9 +37,9 @@ const GameForm: React.FC<Props> = ({ leagues, clubsFromSport = [], getAllClubsUs
 
   const navigate = useNavigate()
 
-  useEffect(() => {
-    console.log(clubsFromSport)
-  }, [clubsFromSport])
+  // useEffect(() => {
+  //   console.log(clubsFromSport)
+  // }, [clubsFromSport])
 
   useEffect(() => {
     getAllClubsUsingSport(sport)

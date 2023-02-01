@@ -42,7 +42,6 @@ const login = (userDetails: any, navigate: any) => {
             //@ts-ignore
             const userDetails = response.data
             localStorage.setItem('user', JSON.stringify(userDetails))
-            console.log("jupi")
 
             dispatch(setUserDetails(userDetails))
             navigate('/')
@@ -62,7 +61,6 @@ const register = (userDetails: any, navigate: any) => {
             //@ts-ignore
             const userDetails = response.data
             localStorage.setItem('user', JSON.stringify(userDetails))
-            console.log("jupi")
 
             dispatch(setUserDetails(userDetails))
             navigate('/')
@@ -90,7 +88,6 @@ export const getAllClubsUsingSport = (sport: string) => {
 
 export const updateProfile = (id: string, body: any, navigate: any) => {
     return async (dispatch: any) => {
-        console.log("stuff sent", id, body.name, body.league)
         const response = await api.updateAccount(id, body.name, body.league)
         console.log("response", response)
         //@ts-ignore
@@ -102,7 +99,7 @@ export const updateProfile = (id: string, body: any, navigate: any) => {
             localStorage.setItem('user', JSON.stringify(userDetails))
 
             dispatch(setUserDetails(userDetails))
-            navigate('/')
+            navigate('/info')
             return {}
         }
     }

@@ -9,15 +9,16 @@ const patchUpdate = async (req: Request<{ id: string }, {}, { league: string, na
 
         if (!league || !name) return res.status(400).send({ message: "League and name need to be defined." })
 
+        const profile: IProfile | null = await Profile.findById(req.params.id)
+        if (!profile) return res.status(400).send({ message: "Club not found." })
+        if (profile.type !== "CLUB") return res.status(400).send({ message: "Account is not a club." })
+
         const sameNameProfile = await Profile.exists({ username: name })
-        if (sameNameProfile) return res.status(409).send({ message: 'Club with that name already exists.' })
+        if (sameNameProfile && profile.username !== name) return res.status(409).send({ message: 'Club with that name already exists.' })
 
         const leagueExists = await League.exists({ name: league })
         if (!leagueExists) return res.status(400).send({ message: "League doesnt exist." })
 
-        const profile: IProfile | null = await Profile.findById(req.params.id)
-        if (!profile) return res.status(400).send({ message: "Club not found." })
-        if (profile.type !== "CLUB") return res.status(400).send({ message: "Account is not a club." })
 
         const newProfile: IProfile | null = await Profile.findByIdAndUpdate(req.params.id, { league: leagueExists._id, username: name }, { new: true })
         if (!newProfile) return res.status(400).send({ message: 'Club not found.' })

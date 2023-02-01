@@ -31,9 +31,9 @@ const CalendarBox: FC<cbProps> = ({date, setDate, games, getGamesFromSport, sele
     getGamesFromSport(selectedSport, 1675090800)
   }, [selectedSport])
 
-  useEffect(() => {
-    console.log(games)
-  }, [games])
+  // useEffect(() => {
+  //   console.log(games)
+  // }, [games])
 
   return (
     <Card style={{marginBottom: '20px'}}>
