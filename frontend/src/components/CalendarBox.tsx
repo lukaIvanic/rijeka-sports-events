@@ -62,7 +62,7 @@ const CalendarBox: FC<cbProps> = ({date, setDate, games, getGamesFromSport, sele
       </CardHeader>
       <CardBody>
         {games && games.map((g: any) => <><ShowGame setActiveGame={setActiveGame} key={g._id} game={g} homeClub={g.clubs[0].username} awayClub={g.clubs[1].username} timeOfTheGame={`${new Date(Number(g.time)).getHours().toString().padStart(2, "0")}:${new Date(Number(g.time)).getMinutes().toString().padStart(2, "0")}`}/><hr /> </>)}
-
+        {games && games.length === 0 && <h4 style={{textAlign: "center"}}>Nema utakmica za ovaj dan</h4> }
       </CardBody>
     </Card>
   );
