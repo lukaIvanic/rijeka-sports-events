@@ -8,6 +8,7 @@ export const gameActions = {
 export const getGameActions = (dispatch: any) => {
     return {
         updateGame: (id: string, result: string) => dispatch(updateGame(id, result)),
+        finishGame: (id: string, isFinished: boolean) => dispatch(finishGame(id, isFinished)),
         createGame: (game: any) => dispatch(createGame(game)),
         getGamesFromSport: (sport: string, timestamp: number) => dispatch(getGamesFromSport(sport, timestamp)),
     }
@@ -30,6 +31,21 @@ export const getGamesFromSport = (sport: string, timestamp: number) => {
             //@ts-ignore
             const games = response.data           
             dispatch(setGamesFromSport(games))
+            return {}
+        }
+    }
+}
+
+export const finishGame = (id: string, isFinished: boolean) => {
+    return async (dispatch: any) => {
+        const response = await api.finishGame(id, isFinished)
+        //@ts-ignore
+        if (response.error) {
+            return {error:response}
+        } else {
+            //@ts-ignore
+            const games = response.data           
+            console.log(games)
             return {}
         }
     }

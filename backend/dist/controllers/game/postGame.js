@@ -27,6 +27,9 @@ const postGame = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         if (!club1 || !club2) {
             return res.status(400).send({ message: "Not able to find one of the clubs" });
         }
+        if (clubs[0] === clubs[1]) {
+            return res.status(400).send({ message: "Cant create game using the same club twice." });
+        }
         if (clubs[0] !== req.user.userId && clubs[1] !== req.user.userId) {
             return res.status(400).send({ message: "Cant create a game that doesnt involve your club" });
         }
@@ -34,10 +37,13 @@ const postGame = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         if (!leagueBase) {
             return res.status(400).send({ message: "League not found." });
         }
-        if (club1.league.toString() !== club2.league.toString() && leagueBase.name !== "FRIENDLY") {
+        if (leagueBase.sport !== sport) {
+            return res.status(400).send({ message: "Sport is not from that league." });
+        }
+        if (club1.league.toString() !== club2.league.toString() && !leagueBase.name.includes("FRIENDLY")) {
             return res.status(400).send({ message: "Clubs are not in the same league and the game is not marked as friendly." });
         }
-        if (club1.league.toString() !== leagueBase._id.toString() && leagueBase.name !== "FRIENDLY") {
+        if (club1.league.toString() !== leagueBase._id.toString() && !leagueBase.name.includes("FRIENDLY")) {
             return res.status(400).send({ message: "Club doesnt belong to selected league." });
         }
         const ts = (0, dayjs_1.default)(time).unix().toString();

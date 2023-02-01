@@ -13,14 +13,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const ProfileSchema_1 = __importDefault(require("../../models/ProfileSchema"));
-const getMe = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    if (req.user.type === "CLUB") {
-        const profile = yield ProfileSchema_1.default.findById(req.user.userId).populate("league");
-        if (!profile)
-            return res.status(404).send({ message: "User not found." });
-        return res.status(200).send(Object.assign({ sport: profile.sport, league: profile.league }, req.user));
-    }
-    res.status(200).json(req.user);
+const getClubsUsingSport = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { sport } = req.params;
+    const profiles = yield ProfileSchema_1.default.find({ sport, type: "CLUB" });
+    if (!profiles)
+        return res.status(200).send({ clubs: [] });
+    return res.status(200).send({ clubs: profiles });
 });
-exports.default = getMe;
-//# sourceMappingURL=getUser.js.map
+exports.default = getClubsUsingSport;
+//# sourceMappingURL=getClubsUsingSport.js.map

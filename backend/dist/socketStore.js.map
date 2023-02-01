@@ -1,0 +1,1 @@
+{"version":3,"file":"socketStore.js","sourceRoot":"","sources":["../src/socketStore.ts"],"names":[],"mappings":";;;AACA,IAAI,EAAE,GAAG,IAAI,CAAA;AACb,MAAM,uBAAuB,GAAG,CAAC,UAAyB,EAAC,EAAE;IACzD,EAAE,GAAG,UAAU,CAAA;AACnB,CAAC,CAAA;AASG,0DAAuB;AAP3B,MAAM,uBAAuB,GAAG,GAAE,EAAE;IAChC,OAAO,EAAE,CAAA;AACb,CAAC,CAAA;AAIG,0DAAuB"}

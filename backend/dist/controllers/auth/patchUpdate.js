@@ -13,20 +13,46 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const ProfileSchema_1 = __importDefault(require("../../models/ProfileSchema"));
+const LeagueSchema_1 = __importDefault(require("../../models/LeagueSchema"));
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const patchUpdate = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let { league } = req.body;
-        if (!league)
-            res.status(400).send({ message: "League needs to be defined." });
+        let { league, name } = req.body;
+        if (!league || !name)
+            return res.status(400).send({ message: "League and name need to be defined." });
         const profile = yield ProfileSchema_1.default.findById(req.params.id);
         if (!profile)
             return res.status(400).send({ message: "Club not found." });
         if (profile.type !== "CLUB")
             return res.status(400).send({ message: "Account is not a club." });
-        const newProfile = yield ProfileSchema_1.default.findByIdAndUpdate(req.params.id, { league }, { new: true });
+        const sameNameProfile = yield ProfileSchema_1.default.exists({ username: name });
+        if (sameNameProfile && profile.username !== name)
+            return res.status(409).send({ message: 'Club with that name already exists.' });
+        const leagueExists = yield LeagueSchema_1.default.exists({ name: league });
+        if (!leagueExists)
+            return res.status(400).send({ message: "League doesnt exist." });
+        const newProfile = yield ProfileSchema_1.default.findByIdAndUpdate(req.params.id, { league: leagueExists._id, username: name }, { new: true });
         if (!newProfile)
             return res.status(400).send({ message: 'Club not found.' });
-        res.status(201).send({ message: 'Club updated.', profile: newProfile });
+        const token = jsonwebtoken_1.default.sign({
+            userId: profile._id,
+            mail: newProfile.mail,
+            type: newProfile.type,
+            username: newProfile.username,
+            sport: newProfile.sport ? newProfile.sport : "",
+            league: newProfile.league ? newProfile.league : "",
+            profilePicture: newProfile.profilePicture,
+        }, process.env.TOKEN_KEY, { expiresIn: '30d' });
+        res.status(201).json({
+            mail: newProfile.mail,
+            token,
+            type: newProfile.type,
+            username: newProfile.username,
+            sport: newProfile.sport ? newProfile.sport : "",
+            league: newProfile.league ? newProfile.league : "",
+            profilePicture: newProfile.profilePicture,
+            _id: newProfile._id
+        });
     }
     catch (e) {
         console.log(e);

@@ -13,23 +13,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const GameSchema_1 = __importDefault(require("../../models/GameSchema"));
-const dayjs_1 = __importDefault(require("dayjs"));
 const getGamesFromSport = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { sport, timestamp } = req.params;
+    const { sport } = req.params;
     try {
-        if (!["nogomet", "rukomet", "košarka", "vaterpolo", "odbojka"].includes(sport)) {
+        if (!["nogomet", "rukomet", "kosarka", "vaterpolo", "odbojka"].includes(sport)) {
             return res.status(400).send({ message: "Invalid sport selected." });
         }
-        console.log(timestamp);
-        const dateToLook = (0, dayjs_1.default)(timestamp);
-        console.log(dateToLook.year(), dateToLook.month(), dateToLook.date());
-        let games = yield GameSchema_1.default.find({ sport });
-        games = games.filter(game => {
-            console.log(game.time);
-            const gameDate = (0, dayjs_1.default)(game.time);
-            console.log(gameDate.year(), gameDate.month(), gameDate.date());
-            return gameDate.year() === dateToLook.year() && gameDate.month() === dateToLook.month() && gameDate.date() === dateToLook.date();
-        });
+        // console.log(timestamp)
+        // const dateToLook = dayjs(timestamp)
+        // console.log(dateToLook.year(), dateToLook.month(), dateToLook.date())
+        let games = yield GameSchema_1.default.find({ sport }).populate("clubs");
+        // games = games.filter(game => {
+        //     console.log(game.time)
+        //     const gameDate = dayjs(game.time)
+        //     console.log(gameDate.year(), gameDate.month(), gameDate.date())
+        //     return gameDate.year() === dateToLook.year() && gameDate.month() === dateToLook.month() && gameDate.date() === dateToLook.date()
+        // })
         if (!games)
             return res.status(200).send([]);
         return res.status(200).send(games);

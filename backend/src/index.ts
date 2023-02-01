@@ -12,7 +12,7 @@ dotenv.config()
 db()
 
 const app = express()
-const server = http.createServer(app)
+// const server = http.createServer(app)
 const PORT: number = 5000;
 
 app.use(cors())
@@ -30,4 +30,4 @@ app.use('/api/league', leagueRouter)
 app.listen(PORT, () => {
   return console.log(`Express is listening at http://localhost:${PORT}`);
 });
-registerSocketServer(server)
+// registerSocketServer(server)

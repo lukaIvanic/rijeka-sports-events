@@ -29,6 +29,7 @@ const postLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 sport: profile.sport,
                 league: profile.league,
                 type: profile.type,
+                profilePicture: profile.profilePicture
             }, process.env.TOKEN_KEY, { expiresIn: '30d' });
             return res.status(200).json({
                 mail: profile.mail,
@@ -37,6 +38,7 @@ const postLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 type: profile.type,
                 sport: profile.sport,
                 league: profile.league,
+                profilePicture: profile.profilePicture,
                 _id: profile._id
             });
         }
