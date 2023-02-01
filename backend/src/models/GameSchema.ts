@@ -7,6 +7,7 @@ export interface IGame extends Document {
   league: string;
   result: string;
   goals: string[];
+  isFinished: boolean;
 }
 
 const GameSchema = new Schema<IGame>({
@@ -15,7 +16,8 @@ const GameSchema = new Schema<IGame>({
   result: { type: String, required: true },
   goals: [{ type: String }],
   sport: {type: String},
-  league: {type: String}
+  league: {type: String},
+  isFinished: {type: Boolean, default: false}
 })
 
 const Game: Model<IGame> = model("Game", GameSchema)

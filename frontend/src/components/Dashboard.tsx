@@ -33,7 +33,7 @@ const Dashboard: React.FC<dashboardProps> = ({setUserDetails, getAllLeagues, get
       getAllLeagues()
       // getAllClubsUsingSport("nogomet")
 
-      connectSocket()
+      // connectSocket()
     }
   }, [])
 
