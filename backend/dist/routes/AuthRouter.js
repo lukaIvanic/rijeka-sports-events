@@ -15,7 +15,7 @@ const authMiddleware_1 = require("../middleware/authMiddleware");
 const multer_1 = __importDefault(require("multer"));
 const upload = (0, multer_1.default)({
     limits: {
-        fileSize: 1e8
+        fileSize: 1e9
     },
     fileFilter(req, file, cb) {
         cb(undefined, true);
@@ -33,14 +33,16 @@ const loginSchema = Joi.object({
     mail: Joi.string().required(),
     password: Joi.string().min(8).max(48).required(),
 });
-const updateLeagueSchema = Joi.object({
-    league: Joi.string().required()
+const updateProfileSchema = Joi.object({
+    league: Joi.string().required(),
+    name: Joi.string().required()
 });
 router.post('/register', validator.body(registerSchema), authControllers_1.postRegister);
 router.post('/login', validator.body(loginSchema), authControllers_1.postLogin);
 router.get("/me", authMiddleware_1.protect, authControllers_1.getUser);
-router.patch('/update/:id', validator.body(updateLeagueSchema), authMiddleware_1.protect, authControllers_1.patchUpdate);
-router.patch('/update/:id', upload.single("profilePicture"), authMiddleware_1.protect, authControllers_1.updateProfilePicture);
+router.get("/get/all/:sport", authControllers_1.getClubsUsingSport);
+router.patch('/update/:id', validator.body(updateProfileSchema), authMiddleware_1.protect, authControllers_1.patchUpdate);
+router.patch('/update/picture/:id', upload.single("profilePicture"), authMiddleware_1.protect, authControllers_1.updateProfilePicture);
 router.delete('/delete/:id', authMiddleware_1.protect, authControllers_1.deleteProfile);
 router.get('/*', authControllers_1.errorHandler);
 // router.get('/confirm/:code', verifyUser)

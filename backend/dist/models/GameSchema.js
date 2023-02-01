@@ -30,7 +30,8 @@ const GameSchema = new mongoose_1.Schema({
     result: { type: String, required: true },
     goals: [{ type: String }],
     sport: { type: String },
-    league: { type: String }
+    league: { type: String },
+    isFinished: { type: Boolean, default: false }
 });
 const Game = (0, mongoose_1.model)("Game", GameSchema);
 exports.default = Game;

@@ -22,7 +22,7 @@ const HomePage: FC<hpProps> = ({setUserDetails, games, getGamesFromSport, userDe
   return (
     <div>
         <NavBar/>
-        <UnderBarForSports setSelectedSport={setSelectedSport}/>
+        <UnderBarForSports setSelectedSport={setSelectedSport} selectedSport={selectedSport}/>
         <CalendarAndResults date={date} setDate={setDate} selectedSport={selectedSport}/>
         <BottomOfThePage/>
     </div>

@@ -30,7 +30,7 @@ const postRegister = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         }
         const leagueExists = yield LeagueSchema_1.default.exists({ name: league, sport });
         if (!leagueExists) {
-            return res.status(409).send({ message: 'League doesnt exist.' });
+            return res.status(409).send({ message: 'League from that sport doesnt exist.' });
         }
         const usernameTaken = yield ProfileSchema_1.default.exists({ username });
         if (usernameTaken) {
@@ -52,6 +52,7 @@ const postRegister = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             type,
             sport: profileBody.sport ? profileBody.sport : "",
             league: profile.league ? profileBody.league : "",
+            profilePicture: profile.profilePicture,
         }, process.env.TOKEN_KEY, { expiresIn: '30d' });
         res.status(201).json({
             mail: profile.mail,
@@ -60,6 +61,7 @@ const postRegister = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             username: profile.username,
             sport: profileBody.sport ? profileBody.sport : "",
             league: profile.league ? profileBody.league : "",
+            profilePicture: profile.profilePicture,
             _id: profile._id
         });
     }

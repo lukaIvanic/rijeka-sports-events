@@ -119,6 +119,17 @@ export function createGame(game: any) {
     }
 }
 
+export function finishGame(id: string, isFinished: boolean) {
+    try {
+        return apiClient.patch('/api/game/finish/'+id, {isFinished})
+    } catch (exception) {
+        return {
+            error: true,
+            exception
+        }
+    }
+}
+
 export function updateGame(id: string, result: string) {
     try {
         return apiClient.patch('/api/game/update/whole/'+id, {result})
